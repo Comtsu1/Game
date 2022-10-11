@@ -10,6 +10,11 @@ Invetory::Invetory()
 
 }
 
+Invetory::~Invetory()
+{
+
+}
+
 void Invetory::add(const Slot& s)
 {
     for(int i = 0; i < 30; ++i)

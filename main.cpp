@@ -7,13 +7,17 @@
 
 int main()
 {
-    std::unique_ptr<Player> player;
 
-    player->getInvetory().add(Slot("Apple", 1, 1));
-    player->getInvetory().add(Slot("Sword", 2, 1));
+    Player player; // works
+    std::unique_ptr<Player> p; // doesnt work core dumped
 
-    player->getInvetory().remove(0);
+    //player->getInvetory().add(Slot("Apple", 1, 1));
+    player.getInvetory().add(Slot("Sword", 2, 1));
 
-    player->getInvetory().show();
+    p->getInvetory().add(Slot("Sword", 2, 1));
+
+    //player->getInvetory().remove(0);
+
+    player.getInvetory().show();
 
 }
