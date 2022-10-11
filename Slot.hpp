@@ -10,8 +10,8 @@ class Slot
         int m_iid;
         int m_qty;
     public:
-        Slot(): m_iid(-1), m_qty(-1) {}
-        Slot(int iid, int qty) : m_iid(iid), m_qty(qty) {}
+        Slot(): m_name(""), m_iid(-1), m_qty(-1) {}
+        Slot(std::string name, int iid, int qty) : m_name(name), m_iid(iid), m_qty(qty) {}
         inline bool checkFree() const {return m_iid == -1;}
 
         inline const Slot& getSlot() {return *this;}

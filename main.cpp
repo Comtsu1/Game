@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 #include "Inventory.hpp"
 #include "Player.hpp"
@@ -6,10 +7,10 @@
 
 int main()
 {
-    Player* player = new Player();
+    std::unique_ptr<Player> player;
 
-    player->getInvetory().add(Slot(1, 1));
-    player->getInvetory().add(Slot(2, 1));
+    player->getInvetory().add(Slot("Apple", 1, 1));
+    player->getInvetory().add(Slot("Sword", 2, 1));
 
     player->getInvetory().remove(0);
 
