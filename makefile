@@ -12,5 +12,6 @@ build/inventory.cpp: Inventory.cpp
 
 clean:
 	rm build/*
+	rm game
 
 r: clean game
