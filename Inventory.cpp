@@ -1,5 +1,9 @@
 #include "Inventory.hpp"
+
+#include "Item.h"
 #include "Slot.hpp"
+#include "ItemList.h"
+
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -33,7 +37,7 @@ void Invetory::show(bool missing) const
     {
         if(!inv[i].checkFree())
         {
-            std::cout<<inv[i].getName()<<": "<<inv[i].getQty()<<"\n";
+            std::cout<<inv[i].getItem().getName()<<": "<<inv[i].getQty()<<"\n";
         }
         else
         {
@@ -50,7 +54,7 @@ void Invetory::remove(const int& index)
         throw std::out_of_range ("index out of range");
     }
 
-    inv[index].set(-1, -1);
+    inv[index].set(Item("", NULL_ID));
 }
 
 Slot& Invetory::operator[](int index)

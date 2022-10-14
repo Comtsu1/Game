@@ -4,8 +4,8 @@ game: build/main.cpp build/player.cpp build/inventory.cpp
 build/main.cpp: main.cpp
 	g++ -c ./main.cpp -o build/main.o
 
-build/player.cpp: Player.cpp
-	g++ -c ./Player.cpp -o build/player.o
+build/player.cpp: Entity/Player/Player.cpp
+	g++ -c Entity/Player/Player.cpp -o build/player.o
 
 build/inventory.cpp: Inventory.cpp
 	g++ -c ./Inventory.cpp -o build/inventory.o

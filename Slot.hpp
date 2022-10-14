@@ -1,25 +1,23 @@
 #pragma once
 
+#include "Item.h"
+
 #include <utility>
 #include <string>
 
 class Slot
 {
     protected:
-        std::string m_name;
-        int m_iid;
+        Item m_item;
         int m_qty;
     public:
-        Slot(): m_name(""), m_iid(-1), m_qty(-1) {}
-        Slot(std::string name, int iid, int qty) : m_name(name), m_iid(iid), m_qty(qty) {}
-        inline bool checkFree() const {return m_iid == -1;}
+        Slot(): m_item(Item("", -1)), m_qty(-1) {}
+        Slot(Item i, int qty) : m_item(i), m_qty(qty) {} 
+        inline bool checkFree() const {return m_item.isFree();}
 
-        inline const Slot& getSlot() {return *this;}
-        inline void set(int iid, int qty){m_iid = iid; m_qty = qty;}
+        inline Item getItem() const {return m_item;}
+        inline void set(Item i){m_item = i;}
 
-
-        inline std::string getName() const {return m_name;}
-        inline int getIID() const {return m_iid;} 
         inline int getQty() const {return m_qty;} 
 
 };

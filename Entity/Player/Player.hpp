@@ -1,5 +1,5 @@
-#include "Entity.hpp"
-#include "Inventory.hpp"
+#include "../Entity.hpp"
+#include "../../Inventory.hpp"
 #pragma once
 
 
@@ -14,9 +14,14 @@ class Player : public Entity
     public:
         Player();
         Player(int h, int wl, int fl);
+        
         void damage(int h);
+        void heal(int h);
+
         int getHealth() const;
+
         void adventure();
+
         Invetory& getInvetory();
 };
 

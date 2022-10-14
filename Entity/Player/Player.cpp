@@ -1,6 +1,7 @@
 #include "Player.hpp"
-#include "Entity.hpp"
-#include "Inventory.hpp"
+#include "../../Adventure.h"
+#include "../Entity.hpp"
+#include "../../Inventory.hpp"
 
 Player::Player(int h, int wl, int fl)
     :Entity(h), m_waterlevel(wl), m_foodlevel(fl)
@@ -15,7 +16,7 @@ Player::Player()
 
 void Player::damage(int h)
 {
-    m_health -= h;
+    this->m_health -= h;
 }
 
 int Player::getHealth() const
@@ -23,14 +24,18 @@ int Player::getHealth() const
     return m_health;
 }
 
-void Player::adventure()
-{
-    // Adventure
-}
-
 Invetory& Player::getInvetory() 
 {
     return m_inv;
 }
 
+void Player::heal(int h)
+{
+    this->m_health += h;
+}
+
+void Player::adventure()
+{
+    Adventure::generageAdventure(this);
+}
 
