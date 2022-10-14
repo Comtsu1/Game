@@ -23,7 +23,14 @@ int Player::getHealth() const
     return m_health;
 }
 
+void Player::adventure()
+{
+    // Adventure
+}
+
 Invetory& Player::getInvetory() 
 {
     return m_inv;
 }
+
+

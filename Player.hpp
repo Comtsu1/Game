@@ -14,8 +14,9 @@ class Player : public Entity
     public:
         Player();
         Player(int h, int wl, int fl);
-        void virtual damage(int h);
-        int virtual getHealth() const;
+        void damage(int h);
+        int getHealth() const;
+        void adventure();
         Invetory& getInvetory();
 };
 

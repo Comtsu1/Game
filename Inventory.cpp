@@ -27,17 +27,17 @@ void Invetory::add(const Slot& s)
     }
 }
 
-void Invetory::show() const
+void Invetory::show(bool missing) const
 {
     for(int i = 0; i < 30; ++i)
     {
         if(!inv[i].checkFree())
         {
-            std::cout<<inv[i].getName()<<" "<<inv[i].getQty()<<"\n";
+            std::cout<<inv[i].getName()<<": "<<inv[i].getQty()<<"\n";
         }
         else
         {
-            std::cout<<"-\n";
+            if(missing) std::cout<<"-\n";
         }
     }
 }

@@ -13,7 +13,7 @@ class Invetory
         Invetory(std::vector<std::unique_ptr<Slot>> s);
     
         void add(const Slot& s);
-        void show() const;
+        void show(bool missing = 0) const;
         void remove(const int& index);
 
         //friend Invetory& operator+(Invetory inv, const Invetory& it);
