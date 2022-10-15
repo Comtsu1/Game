@@ -13,14 +13,13 @@ class Adventure
         unsigned int nrAdventures = 0;
 
         // adventures
-        void Goblin_Attack(Player *p)
+        static void Goblin_Attack(Player *p)
         {
-            
             std::cout<<"You have encountered a goblin";
         }
     public:
         static void generageAdventure(Player *p)
         {
-            
+            Goblin_Attack(p);
         }
 };
