@@ -13,6 +13,8 @@
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"
 
+int getch();
+
 int main()
 {
     std::unique_ptr<Player> p = std::make_unique<Player>();

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "getch.h"
 #include "Entity/Player/Player.hpp"
+
+int getch();
 
 class Adventure
 {
