@@ -1,9 +1,9 @@
 #pragma once
 
-#define NULL_ID -1
+#include "Item.h"
 
-#define WOODEN_SWORD "Wooden Sword"
-#define WOODEN_SWORD_ID 10
+#define NULL_ITEM Item("", -1, 0)
 
-#define APPLE "Apple"
-#define APPLE_ID 1
+#define WOODEN_SWORD Item("Wooden Sword", 910, 3)
+
+#define APPLE Item("Apple", 1, 0)

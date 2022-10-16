@@ -3,7 +3,7 @@
 #include "../../ItemList.h"
 
 Goblin::Goblin()
-    : Entity(10), m_item(Item(WOODEN_SWORD, WOODEN_SWORD_ID))
+    : Entity(10), m_item(NULL_ITEM)
 {
 
 }

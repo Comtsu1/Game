@@ -54,7 +54,7 @@ void Invetory::remove(const int& index)
         throw std::out_of_range ("index out of range");
     }
 
-    inv[index].set(Item("", NULL_ID));
+    inv[index].set(NULL_ITEM);
 }
 
 Slot& Invetory::operator[](int index)

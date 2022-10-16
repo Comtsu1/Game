@@ -18,7 +18,7 @@ int main()
     std::unique_ptr<Player> p = std::make_unique<Player>();
 
 
-    p->getInvetory().add(Slot(Item(WOODEN_SWORD, WOODEN_SWORD_ID), 1));
+    p->getInvetory().add(Slot(WOODEN_SWORD, 1));
 
     bool gamerunning = 1;
 

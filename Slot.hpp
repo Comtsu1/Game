@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Item.h"
 
+#include "Item.h"
+#include "ItemList.h"
 #include <utility>
 #include <string>
 
@@ -11,7 +12,7 @@ class Slot
         Item m_item;
         int m_qty;
     public:
-        Slot(): m_item(Item("", -1)), m_qty(-1) {}
+        Slot(): m_item(NULL_ITEM), m_qty(-1) {}
         Slot(Item i, int qty) : m_item(i), m_qty(qty) {} 
         inline bool checkFree() const {return m_item.isFree();}
 
