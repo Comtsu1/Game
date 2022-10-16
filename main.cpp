@@ -6,8 +6,6 @@
 #include "Item.h"
 #include "defines.h"
 
-#include "Adventure.h"
-
 #include "ItemList.h"
 #include "Inventory.hpp"
 #include "Entity/Player/Player.hpp"
