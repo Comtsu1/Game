@@ -28,7 +28,7 @@ int main()
 
     while(gamerunning)
     {
-        std::cout<<"Welcome traveler\n"
+        std::cout<<"\nWelcome traveler\n"
                 <<"You shall choose only one:\n"
                 <<"\t1. Adventure\n"
                 <<"\t2. View Inventory\n"
