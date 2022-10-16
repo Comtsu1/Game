@@ -4,8 +4,9 @@
 #include <memory>
 
 #include "Item.h"
-#include "getch.h"
 #include "defines.h"
+
+#include "Adventure.h"
 
 #include "ItemList.h"
 #include "Inventory.hpp"

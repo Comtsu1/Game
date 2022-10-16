@@ -1,5 +1,5 @@
-game: build/main.cpp build/player.cpp build/inventory.cpp
-	g++ -o game build/main.o build/player.o build/inventory.o
+game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp
+	g++ -o game build/main.o build/player.o build/inventory.o build/goblin.o build/adventure.o
 
 build/main.cpp: main.cpp
 	g++ -c ./main.cpp -o build/main.o
@@ -9,6 +9,12 @@ build/player.cpp: Entity/Player/Player.cpp
 
 build/inventory.cpp: Inventory.cpp
 	g++ -c ./Inventory.cpp -o build/inventory.o
+
+build/goblin.cpp: Entity/Goblin/Goblin.cpp
+	g++ -c Entity/Goblin/Goblin.cpp -o build/goblin.o
+
+build/adventure.cpp: Adventure.cpp
+	g++ -c ./Adventure.cpp -o build/adventure.o
 
 clean:
 	rm build/*

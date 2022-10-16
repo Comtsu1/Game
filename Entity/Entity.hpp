@@ -8,10 +8,12 @@ class Entity
     public:
         Entity(int h): m_health(h) {};
         
-        virtual void damage(int d) = 0;
-        virtual void heal(int d) = 0;
+        inline virtual void damage(int d) {m_health-=d;}
+        inline virtual void heal(int d) { m_health+=d;}
 
-        int virtual getHealth() const = 0;
+        inline virtual void attack(Entity *p, int hp) {p->damage(hp);}
+
+        int virtual getHealth() const {return m_health;}
 
 
 };
