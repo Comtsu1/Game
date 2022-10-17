@@ -38,10 +38,12 @@ int main()
 
         int option; option = getch();
         switch (option) {
-            case START_ONE + 1: 
+            case (int)('1'):
+            case (int)('q'):
                 p->adventure();
                 break;
-            case START_ONE + 2:
+            case (int)('2'):
+            case (int)('w'):
                 std::cout<<"\n";
                 p->getInvetory().show();
 
@@ -50,7 +52,8 @@ int main()
 
                 std::system("clear");
                 break;
-            case START_ONE + 3:
+            case (int)('3'):
+            case (int)('e'):
                 gamerunning = 0;
                 break;
         }
