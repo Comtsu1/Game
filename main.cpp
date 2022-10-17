@@ -3,10 +3,10 @@
 #include <iostream>
 #include <memory>
 
-#include "Item.h"
 #include "defines.h"
-
 #include "ItemList.h"
+
+#include "Item.h"
 #include "Inventory.hpp"
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"

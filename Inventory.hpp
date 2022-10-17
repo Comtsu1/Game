@@ -6,7 +6,7 @@
 
 class Invetory
 {
-    Slot inv[30];
+    Slot inv[40];
     public:
         Invetory();
         ~Invetory();
