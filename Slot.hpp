@@ -13,14 +13,14 @@ class Slot
         int m_qty;
     public:
         Slot();
-        Slot(Item i, int qty);
+        Slot(Item item, int qty);
         bool checkFree() const;
 
         Item getItem() const;
-        void setItem(Item i);
+        void setItem(Item item);
 
         int getQty() const;
-        void setQty(int q);
-        void addQty(int q);
-        void removeQty(int q);
+        void setQty(int qty);
+        void addQty(int qty);
+        void removeQty(int qty);
 };

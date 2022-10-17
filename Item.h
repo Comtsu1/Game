@@ -13,6 +13,7 @@ class Item
 
         inline int getID() const {return m_id;}
         inline std::string getName() const {return m_name;}
+        inline int getDamage() const {return m_damage;}
 
         inline bool isFree() const {return m_id == -1;}
 

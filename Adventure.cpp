@@ -27,7 +27,8 @@ void Adventure::Goblin_Attack(Player *p)
         {
             std::cout<<"\n\nThe goblin has " << g.getHealth() << " health, would you like to attack(y/n)?\n>";
             op = getch();
-            if(op == 'y' || op == 'Y') p->attack(&g, 1);
+            if(op == 'y' || op == 'Y')
+                p->attack(&g, p->getInvetory()[0].getItem());
             else 
             {
                 std::cout<<"You fucked off, and the golbin surprisingly let you go.";
@@ -36,7 +37,7 @@ void Adventure::Goblin_Attack(Player *p)
         }
         if(g.getHealth() <= 0)
         {
-            // implement reward TODO
+            // implement reward function TODO
             int reward = rand() % 4 + 1;
             std::cout<<"\n\nYou successfully defeated the goblin and got "<<reward<<" copper coins, they amount to shit!\n\n";
             p->getInvetory().add(Slot(COPPER_COIN, reward));

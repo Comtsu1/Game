@@ -19,18 +19,18 @@ Invetory::~Invetory()
 
 }
 
-void Invetory::add(const Slot& s)
+void Invetory::add(const Slot& slot)
 {
     for(int i = 0; i < 40; ++i)
     {
-        if(inv[i].getItem() == s.getItem())
+        if(inv[i].getItem() == slot.getItem())
         {
-            inv[i].addQty(s.getQty());
+            inv[i].addQty(slot.getQty());
             return;
         }
         else if(inv[i].checkFree())
         {
-            inv[i] = s;
+            inv[i] = slot;
             return;
         }
     }

@@ -2,6 +2,8 @@
 
 #include <cstdlib>
 
+#include "../Item.h"
+
 class Entity
 {
     protected:
@@ -12,12 +14,9 @@ class Entity
         inline virtual void damage(int d) {m_health-=d;}
         inline virtual void heal(int d) { m_health+=d;}
 
-        inline virtual void attack(Entity *p, int hp)
+        inline virtual void attack(Entity *entity, Item item)
         {
-            if(rand() % 10 == 0)
-                p->damage(2*hp);
-            else
-                p->damage(hp);
+            entity->damage(item.getDamage());
         }
 
         int virtual getHealth() const {return m_health;}

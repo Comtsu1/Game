@@ -24,9 +24,9 @@ Item Slot::getItem() const
     return m_item;
 }
 
-void Slot::setItem(Item i)
+void Slot::setItem(Item item)
 {
-    m_item = i;
+    m_item = item;
 }
 
 int Slot::getQty() const
@@ -34,17 +34,17 @@ int Slot::getQty() const
     return m_qty;
 }
 
-void Slot::setQty(int q)
+void Slot::setQty(int qty)
 {
-    m_qty = q;
+    m_qty = qty;
 }
 
-void Slot::addQty(int q)
+void Slot::addQty(int qty)
 {
-    m_qty += q;
+    m_qty += qty;
 }
 
-void Slot::removeQty(int q)
+void Slot::removeQty(int qty)
 {
-    m_qty -= q;
+    m_qty -= qty;
 }

@@ -10,9 +10,8 @@ class Invetory
     public:
         Invetory();
         ~Invetory();
-        Invetory(std::vector<std::unique_ptr<Slot>> s);
     
-        void add(const Slot& s);
+        void add(const Slot& slot);
         void show(bool missing = 0) const;
         void remove(const int& index);
 
