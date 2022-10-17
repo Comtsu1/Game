@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <memory>
 
@@ -15,6 +16,9 @@ int getch();
 
 int main()
 {
+    // new shit
+    srand(time(0));
+
     std::unique_ptr<Player> p = std::make_unique<Player>();
 
 
