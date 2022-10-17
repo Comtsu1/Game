@@ -3,21 +3,22 @@
 #include <iostream>
 #include <memory>
 
-#include "Item.h"
-#include "getch.h"
 #include "defines.h"
-
 #include "ItemList.h"
+
+#include "Item.h"
 #include "Inventory.hpp"
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"
+
+int getch();
 
 int main()
 {
     std::unique_ptr<Player> p = std::make_unique<Player>();
 
 
-    p->getInvetory().add(Slot(Item(WOODEN_SWORD, WOODEN_SWORD_ID), 1));
+    p->getInvetory().add(Slot(WOODEN_SWORD, 1));
 
     bool gamerunning = 1;
 
@@ -25,7 +26,7 @@ int main()
 
     while(gamerunning)
     {
-        std::cout<<"Welcome traveler\n"
+        std::cout<<"\nWelcome traveler\n"
                 <<"You shall choose only one:\n"
                 <<"\t1. Adventure\n"
                 <<"\t2. View Inventory\n"

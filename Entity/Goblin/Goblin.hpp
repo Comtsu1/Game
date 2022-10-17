@@ -1,13 +1,13 @@
 #pragma once
 
 #include "../Entity.hpp"
+#include "../../Item.h"
 
 class Goblin : public Entity
 { 
+    Item m_item;
     public:
-        void damage(int d);
-        void heal(int h);
-
-        inline int getHealth() const {return this->m_health;}
+        Goblin();
+        Goblin(Item i);
 };
 

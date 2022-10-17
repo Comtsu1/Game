@@ -21,9 +21,14 @@ Invetory::~Invetory()
 
 void Invetory::add(const Slot& s)
 {
-    for(int i = 0; i < 30; ++i)
+    for(int i = 0; i < 40; ++i)
     {
-        if(inv[i].checkFree())
+        if(inv[i].getItem() == s.getItem())
+        {
+            inv[i].addQty(s.getQty());
+            return;
+        }
+        else if(inv[i].checkFree())
         {
             inv[i] = s;
             return;
@@ -33,7 +38,7 @@ void Invetory::add(const Slot& s)
 
 void Invetory::show(bool missing) const
 {
-    for(int i = 0; i < 30; ++i)
+    for(int i = 0; i < 40; ++i)
     {
         if(!inv[i].checkFree())
         {
@@ -49,20 +54,10 @@ void Invetory::show(bool missing) const
 // removes information from index "index"
 void Invetory::remove(const int& index)
 {
-    if(index < 0 || index > 30)
-    {
-        throw std::out_of_range ("index out of range");
-    }
-
-    inv[index].set(Item("", NULL_ID));
+    inv[index].setItem(NULL_ITEM);
 }
 
 Slot& Invetory::operator[](int index)
 {
-    if(index < 0 || index > 30)
-    {
-        throw std::out_of_range("index not found");
-    }
-
     return inv[index];
 }

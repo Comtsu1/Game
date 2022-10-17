@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdlib>
 
 class Entity
 {
@@ -7,11 +8,19 @@ class Entity
         int m_health;
     public:
         Entity(int h): m_health(h) {};
-        
-        virtual void damage(int d) = 0;
-        virtual void heal(int d) = 0;
 
-        int virtual getHealth() const = 0;
+        inline virtual void damage(int d) {m_health-=d;}
+        inline virtual void heal(int d) { m_health+=d;}
+
+        inline virtual void attack(Entity *p, int hp)
+        {
+            if(rand() % 10 == 0)
+                p->damage(2*hp);
+            else
+                p->damage(hp);
+        }
+
+        int virtual getHealth() const {return m_health;}
 
 
 };

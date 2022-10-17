@@ -3,12 +3,13 @@
 #include "../../ItemList.h"
 
 Goblin::Goblin()
-    : Entity(10), sword(Item(WOODEN_SWORD, WOODEN_SWORD_ID))
+    : Entity(10), m_item(NULL_ITEM)
 {
 
 }
 
-void Goblin::attack(Entity *e, int hp)
+Goblin::Goblin(Item i)
+    : Entity(10), m_item(i)
 {
-    e->damage(hp);
+
 }
