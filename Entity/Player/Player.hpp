@@ -2,7 +2,7 @@
 
 #include "../Entity.hpp"
 #include "../../Inventory.hpp"
-
+#include "../../Item/Item.h"
 
 
 class Player : public Entity
@@ -17,8 +17,6 @@ class Player : public Entity
         Player(int h, int wl, int fl);
         
         void adventure();
-
-	void attack(Entity *player, int hp);
 
         Invetory& getInvetory();
 };

@@ -22,10 +22,3 @@ void Player::adventure()
 {
     Adventure::generageAdventure(this);
 }
-
-void Player::attack(Entity *player, int hp)
-{
-	// calculate dmg
-	
-	player->damage(hp);
-}

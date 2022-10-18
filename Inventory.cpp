@@ -61,13 +61,3 @@ Slot& Invetory::operator[](int index)
 {
     return inv[index];
 }
-
-void Invetory::setArmor(ArmorSet armor)
-{
-    m_armor = armor;
-}
-
-ArmorSet Invetory::getArmor() const
-{
-    return m_armor;
-}

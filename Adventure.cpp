@@ -9,9 +9,9 @@
 
 
 
-void Adventure::generageAdventure(Player *p)
+void Adventure::generageAdventure(Player *player)
 {
-    Goblin_Attack(p);
+    Goblin_Attack(player);
 }
 
 void Adventure::Goblin_Attack(Player *player)
@@ -23,6 +23,7 @@ void Adventure::Goblin_Attack(Player *player)
     if(op == 'y' || op == 'Y')
     {
         Goblin goblin;
+        goblin.setArmor(LEATHER_ARMOR_FULL_SET);
         while(goblin.getHealth() > 0)
         {
             std::cout<<"\n\nThe goblin has " << goblin.getHealth() << " health, would you like to attack(y/n)?\n>";
