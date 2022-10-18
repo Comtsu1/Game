@@ -1,6 +1,6 @@
 #include "Inventory.hpp"
 
-#include "Item.h"
+#include "Item/Item.h"
 #include "Slot.hpp"
 #include "ItemList.h"
 
@@ -60,4 +60,14 @@ void Invetory::remove(const int& index)
 Slot& Invetory::operator[](int index)
 {
     return inv[index];
+}
+
+void Invetory::setArmor(ArmorSet armor)
+{
+    m_armor = armor;
+}
+
+ArmorSet Invetory::getArmor() const
+{
+    return m_armor;
 }

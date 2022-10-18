@@ -2,7 +2,7 @@
 
 #include <cstdlib>
 
-#include "../Item.h"
+#include "../Item/Item.h"
 
 class Entity
 {

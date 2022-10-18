@@ -18,6 +18,9 @@ class Invetory
         void show(bool missing = 0) const;
         void remove(const int& index);
 
+        void setArmor(ArmorSet armor);
+        ArmorSet getArmor() const;
+
         //friend Invetory& operator+(Invetory inv, const Invetory& it);
         Slot& operator[](int index);
 };

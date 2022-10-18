@@ -18,6 +18,8 @@ class Player : public Entity
         
         void adventure();
 
+	void attack(Entity *player, int hp);
+
         Invetory& getInvetory();
 };
 

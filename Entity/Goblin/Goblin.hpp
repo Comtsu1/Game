@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Entity.hpp"
-#include "../../Item.h"
+#include "../../Item/Item.h"
 
 class Goblin : public Entity
 { 

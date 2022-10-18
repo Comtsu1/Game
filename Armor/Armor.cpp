@@ -1,22 +1,26 @@
 #include "Armor.hpp"
+#include "../Item/Item.h"
+
+#include "../ItemList.h"
 
 Armor::Armor()
+    :Item(NULL_ITEM), m_protection(0)
 {
 
 }
 
-Armor::Armor(Item item)
-    :m_name(item.getName()), m_id(item.getID()), m_damage(item.getDamage())
+Armor::Armor(Item item, int protection)
+    :Item(item), m_protection(protection)
 {
 
 }
 
-void Armor::getProtection() const
+int Armor::getProtection() const
 {
     return m_protection;
 }
 
-int Armor::setProtection(int protection)
+void Armor::setProtection(int protection)
 {
     m_protection = protection;
 }

@@ -7,7 +7,7 @@
 #include "defines.h"
 #include "ItemList.h"
 
-#include "Item.h"
+#include "Item/Item.h"
 #include "Inventory.hpp"
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"
