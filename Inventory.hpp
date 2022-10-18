@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Slot.hpp"
-#include "Armor/ArmorSet.hpp"
+#include "Armor/ArmorSet/ArmorSet.hpp"
 
 #include <vector>
 #include <memory>

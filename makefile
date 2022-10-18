@@ -23,8 +23,8 @@ build/getch.cpp: getch.cpp
 build/slot.cpp: Slot.cpp
 	g++ -c ./Slot.cpp -o build/slot.o
 
-build/armorset.cpp: Armor/ArmorSet.cpp
-	g++ -c Armor/ArmorSet.cpp -o build/armorset.o
+build/armorset.cpp: Armor/ArmorSet/ArmorSet.cpp
+	g++ -c Armor/ArmorSet/ArmorSet.cpp -o build/armorset.o
 
 clean:
 	rm build/*

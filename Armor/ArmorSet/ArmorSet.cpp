@@ -5,7 +5,7 @@ ArmorSet::ArmorSet()
 
 }
 
-ArmorSet::ArmorSet(Slot helmet, Slot chest, Slot leggings, Slot boots)
+ArmorSet::ArmorSet(Armor helmet, Armor chest, Armor leggings, Armor boots)
     :m_helmet(helmet), m_chestplate(chest), m_leggings(leggings), m_boots(boots)
 {
 
@@ -19,42 +19,42 @@ void ArmorSet::setArmor(ArmorSet set)
     m_boots = set.getBoots();
 }
 
-void ArmorSet::setHelmet(Slot helmet)
+void ArmorSet::setHelmet(Armor helmet)
 {
     m_helmet = helmet;
 }
 
-void ArmorSet::setChestPlate(Slot chest)
+void ArmorSet::setChestPlate(Armor chest)
 {
     m_chestplate = chest;
 }
 
-void ArmorSet::setLeggings(Slot leggings)
+void ArmorSet::setLeggings(Armor leggings)
 {
     m_leggings = leggings;
 }
 
-void ArmorSet::setBoots(Slot boots)
+void ArmorSet::setBoots(Armor boots)
 {
     m_boots = boots;
 }
 
-Slot ArmorSet::getHelmet() const
+Armor ArmorSet::getHelmet() const
 {
     return m_helmet;
 }
 
-Slot ArmorSet::getChestPlate() const
+Armor ArmorSet::getChestPlate() const
 {
     return m_chestplate;
 }
 
-Slot ArmorSet::getLeggings() const
+Armor ArmorSet::getLeggings() const
 {
     return m_leggings;
 }
 
-Slot ArmorSet::getBoots() const
+Armor ArmorSet::getBoots() const
 {
     return m_boots;
 }
