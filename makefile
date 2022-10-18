@@ -1,4 +1,4 @@
-game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp build/getch.cpp build/slot.cpp 
+game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp build/getch.cpp build/slot.cpp build/armorset.cpp
 	# g++ -o game build/main.o build/player.o build/inventory.o build/goblin.o build/adventure.o build/getch.o build/sl
 	g++ -o game build/*
 
@@ -22,6 +22,9 @@ build/getch.cpp: getch.cpp
 
 build/slot.cpp: Slot.cpp
 	g++ -c ./Slot.cpp -o build/slot.o
+
+build/armorset.cpp: Armor/ArmorSet.cpp
+	g++ -c Armor/ArmorSet.cpp -o build/armorset.o
 
 clean:
 	rm build/*

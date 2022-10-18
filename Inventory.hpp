@@ -1,12 +1,15 @@
 #pragma once
 
 #include "Slot.hpp"
+#include "Armor/ArmorSet.hpp"
+
 #include <vector>
 #include <memory>
 
 class Invetory
 {
-    Slot inv[40];
+    Slot inv[10];
+    ArmorSet m_armor;
     public:
         Invetory();
         ~Invetory();

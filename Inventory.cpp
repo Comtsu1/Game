@@ -21,7 +21,7 @@ Invetory::~Invetory()
 
 void Invetory::add(const Slot& slot)
 {
-    for(int i = 0; i < 40; ++i)
+    for(int i = 0; i < 10; ++i)
     {
         if(inv[i].getItem() == slot.getItem())
         {
@@ -38,7 +38,7 @@ void Invetory::add(const Slot& slot)
 
 void Invetory::show(bool missing) const
 {
-    for(int i = 0; i < 40; ++i)
+    for(int i = 0; i < 10; ++i)
     {
         if(!inv[i].checkFree())
         {

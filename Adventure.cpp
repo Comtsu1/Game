@@ -14,7 +14,7 @@ void Adventure::generageAdventure(Player *p)
     Goblin_Attack(p);
 }
 
-void Adventure::Goblin_Attack(Player *p)
+void Adventure::Goblin_Attack(Player *player)
 {
     std::cout<<"You have encountered a goblin, would you like to attack it(y/n)?\n>";
     int op;
@@ -22,25 +22,25 @@ void Adventure::Goblin_Attack(Player *p)
 
     if(op == 'y' || op == 'Y')
     {
-        Goblin g;
-        while(g.getHealth() > 0)
+        Goblin goblin;
+        while(goblin.getHealth() > 0)
         {
-            std::cout<<"\n\nThe goblin has " << g.getHealth() << " health, would you like to attack(y/n)?\n>";
+            std::cout<<"\n\nThe goblin has " << goblin.getHealth() << " health, would you like to attack(y/n)?\n>";
             op = getch();
             if(op == 'y' || op == 'Y')
-                p->attack(&g, p->getInvetory()[0].getItem());
+                player->attack(&goblin, player->getInvetory()[0].getItem());
             else 
             {
-                std::cout<<"You fucked off, and the golbin surprisingly let you go.";
+                std::cout<<"\nYou fucked off, and the golbin surprisingly let you go.";
                 break;
             }
         }
-        if(g.getHealth() <= 0)
+        if(goblin.getHealth() <= 0)
         {
             // implement reward function TODO
             int reward = rand() % 4 + 1;
             std::cout<<"\n\nYou successfully defeated the goblin and got "<<reward<<" copper coins, they amount to shit!\n\n";
-            p->getInvetory().add(Slot(COPPER_COIN, reward));
+            player->getInvetory().add(Slot(COPPER_COIN, reward));
         }
 
         
@@ -48,7 +48,7 @@ void Adventure::Goblin_Attack(Player *p)
     }
     else
     {
-        std::cout<<"You left the goblin alone, sparing his life.\n";
+        std::cout<<"\nYou left the goblin alone, sparing his life.\n";
     }
 
 }
