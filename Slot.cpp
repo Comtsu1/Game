@@ -1,5 +1,4 @@
 #include "Slot.hpp"
-#include "Item.h"
 #include "ItemList.h"
 
 Slot::Slot()

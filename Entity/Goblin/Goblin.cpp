@@ -1,5 +1,4 @@
 #include "Goblin.hpp"
-#include "../../Item.h"
 #include "../../ItemList.h"
 
 Goblin::Goblin()

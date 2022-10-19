@@ -2,24 +2,34 @@
 
 #include <cstdlib>
 
-#include "../Item.h"
+#include "../Item/Item.h"
+#include "../Armor/ArmorSet/ArmorSet.hpp"
 
 class Entity
 {
-    protected:
-        int m_health;
+    private:
+        double m_health;
+        ArmorSet m_armorset;
     public:
         Entity(int h): m_health(h) {};
 
-        inline virtual void damage(int d) {m_health-=d;}
-        inline virtual void heal(int d) { m_health+=d;}
+        inline virtual void damage(double amount) {m_health-=amount;}
+        inline virtual void heal(double amount) { m_health+=amount;}
+
+        inline virtual ArmorSet getArmor() const {return m_armorset;}
+        inline virtual void setArmor(ArmorSet set) {m_armorset = set;}
 
         inline virtual void attack(Entity *entity, Item item)
         {
-            entity->damage(item.getDamage());
+            entity->damage(item.getDamage() - entity->getArmor().calculateProtection());
         }
 
-        int virtual getHealth() const {return m_health;}
+        inline virtual std::string getVisualAttributes() const
+        {
+            return m_armorset.getString();
+        }
+
+        double virtual getHealth() const {return m_health;}
 
 
 };

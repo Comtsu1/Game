@@ -1,6 +1,6 @@
-game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp build/getch.cpp build/slot.cpp 
+game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp build/getch.cpp build/slot.cpp build/armorset.cpp build/item.cpp build/armor.cpp
 	# g++ -o game build/main.o build/player.o build/inventory.o build/goblin.o build/adventure.o build/getch.o build/sl
-	g++ -o game build/*
+	g++ -o game build/* -Wall
 
 build/main.cpp: main.cpp
 	g++ -c ./main.cpp -o build/main.o
@@ -22,6 +22,15 @@ build/getch.cpp: getch.cpp
 
 build/slot.cpp: Slot.cpp
 	g++ -c ./Slot.cpp -o build/slot.o
+
+build/armorset.cpp: Armor/ArmorSet/ArmorSet.cpp
+	g++ -c Armor/ArmorSet/ArmorSet.cpp -o build/armorset.o
+
+build/armor.cpp: Armor/Armor.cpp
+	g++ -c Armor/Armor.cpp -o build/armor.o
+
+build/item.cpp: Item/Item.h
+	g++ -c Item/Item.cpp -o build/item.o
 
 clean:
 	rm build/*

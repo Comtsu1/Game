@@ -7,7 +7,7 @@
 #include "defines.h"
 #include "ItemList.h"
 
-#include "Item.h"
+#include "Item/Item.h"
 #include "Inventory.hpp"
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"
@@ -23,6 +23,7 @@ int main()
 
 
     p->getInvetory().add(Slot(WOODEN_SWORD, 1));
+    // p->setArmor(LEATHER_ARMOR_FULL_SET);
 
     bool gamerunning = 1;
 
