@@ -17,15 +17,22 @@ class ArmorSet
         void setLeggings(Armor leggings);
         void setBoots(Armor boots);
 
+        // for now int
+        int getTotalProtection() const;
 
         // Uncommnet when ready 
         // void updateArmor();
         
         // for now its int, prob make a var out of this but ok
-        int calculateProtection() {return 1;}
+        double calculateProtection()
+        {
+            int value = this->getTotalProtection();
+            return value / 10.0;
+        }
 
         Armor getHelmet() const;
         Armor getChestPlate() const;
         Armor getLeggings() const;
         Armor getBoots() const;
+
 };

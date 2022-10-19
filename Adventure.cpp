@@ -23,6 +23,7 @@ void Adventure::Goblin_Attack(Player *player)
     if(op == 'y' || op == 'Y')
     {
         Goblin goblin;
+        // goblin.setArmor(GOLD_ARMOR_FULL_SET);
         goblin.setArmor(LEATHER_ARMOR_FULL_SET);
         while(goblin.getHealth() > 0)
         {

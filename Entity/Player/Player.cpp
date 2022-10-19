@@ -3,7 +3,7 @@
 #include "../Entity.hpp"
 #include "../../Inventory.hpp"
 
-Player::Player(int h, int wl, int fl)
+Player::Player(double h, int wl, int fl)
     :Entity(h), m_waterlevel(wl), m_foodlevel(fl)
 {
 }

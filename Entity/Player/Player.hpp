@@ -14,7 +14,7 @@ class Player : public Entity
 
     public:
         Player();
-        Player(int h, int wl, int fl);
+        Player(double h, int wl, int fl);
         
         void adventure();
 

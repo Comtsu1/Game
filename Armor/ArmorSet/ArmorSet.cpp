@@ -59,3 +59,7 @@ Armor ArmorSet::getBoots() const
     return m_boots;
 }
 
+int ArmorSet::getTotalProtection() const
+{
+    return m_helmet.getProtection() + m_chestplate.getProtection() + m_leggings.getProtection() + m_boots.getProtection();
+}
