@@ -23,7 +23,7 @@ int main()
 
 
     p->getInvetory().add(Slot(WOODEN_SWORD, 1));
-    p->setArmor(LEATHER_ARMOR_FULL_SET);
+    // p->setArmor(LEATHER_ARMOR_FULL_SET);
 
     bool gamerunning = 1;
 
