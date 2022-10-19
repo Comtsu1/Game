@@ -17,6 +17,8 @@ class ArmorSet
         void setLeggings(Armor leggings);
         void setBoots(Armor boots);
 
+        bool isFree() const;
+
         // for now int
         int getTotalProtection() const;
 

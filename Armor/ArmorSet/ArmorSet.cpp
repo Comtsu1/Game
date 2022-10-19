@@ -63,3 +63,11 @@ int ArmorSet::getTotalProtection() const
 {
     return m_helmet.getProtection() + m_chestplate.getProtection() + m_leggings.getProtection() + m_boots.getProtection();
 }
+
+bool ArmorSet::isFree() const
+{
+    return m_helmet.isFree()
+        && m_chestplate.isFree()
+        && m_leggings.isFree()
+        && m_boots.isFree();
+}

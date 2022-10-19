@@ -16,15 +16,16 @@ void Adventure::generageAdventure(Player *player)
 
 void Adventure::Goblin_Attack(Player *player)
 {
+    Goblin goblin;
+    // goblin.setArmor(GOLD_ARMOR_FULL_SET);
+    goblin.setArmor(LEATHER_ARMOR_FULL_SET);
+
     std::cout<<"You have encountered a goblin, would you like to attack it(y/n)?\n>";
     int op;
     op = getch();
 
     if(op == 'y' || op == 'Y')
     {
-        Goblin goblin;
-        // goblin.setArmor(GOLD_ARMOR_FULL_SET);
-        goblin.setArmor(LEATHER_ARMOR_FULL_SET);
         while(goblin.getHealth() > 0)
         {
             std::cout<<"\n\nThe goblin has " << goblin.getHealth() << " health, would you like to attack(y/n)?\n>";

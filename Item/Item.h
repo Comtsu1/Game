@@ -9,6 +9,7 @@ class Item
         int m_id;
         int m_damage;
     public:
+        Item();
         Item(std::string name, int id, int damage);
 
         int getID() const;
