@@ -71,3 +71,14 @@ bool ArmorSet::isFree() const
         && m_leggings.isFree()
         && m_boots.isFree();
 }
+
+std::string ArmorSet::getString() const 
+{
+    return m_helmet.getName()
+        + ", "
+        + m_chestplate.getName()
+        + ", "
+        + m_leggings.getName()
+        + " and "
+        + m_boots.getName();
+}

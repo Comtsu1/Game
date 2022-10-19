@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Armor.hpp"
+#include <iostream>
 
 class ArmorSet
 {
@@ -37,4 +38,5 @@ class ArmorSet
         Armor getLeggings() const;
         Armor getBoots() const;
 
+        std::string getString() const;
 };

@@ -24,6 +24,11 @@ class Entity
             entity->damage(item.getDamage() - entity->getArmor().calculateProtection());
         }
 
+        inline virtual std::string getVisualAttributes() const
+        {
+            return m_armorset.getString();
+        }
+
         double virtual getHealth() const {return m_health;}
 
 
