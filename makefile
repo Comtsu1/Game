@@ -1,4 +1,4 @@
-game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp build/getch.cpp build/slot.cpp build/armorset.cpp build/item.cpp build/armor.cpp
+game: build/main.cpp build/player.cpp build/inventory.cpp build/goblin.cpp build/adventure.cpp build/getch.cpp build/slot.cpp build/armorset.cpp build/item.cpp build/armor.cpp build/tool.cpp
 	# g++ -o game build/main.o build/player.o build/inventory.o build/goblin.o build/adventure.o build/getch.o build/sl
 	g++ -o game build/* -Wall
 
@@ -31,6 +31,9 @@ build/armor.cpp: Armor/Armor.cpp
 
 build/item.cpp: Item/Item.h
 	g++ -c Item/Item.cpp -o build/item.o
+
+build/tool.cpp: Item/Tool/Tool.h
+	g++ -c Item/Tool/Tool.cpp -o build/tool.o
 
 clean:
 	rm build/*

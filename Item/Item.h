@@ -13,7 +13,10 @@ class Item
         Item(std::string name, int id, int damage);
 
         int getID() const;
+        
         std::string getName() const;
+        virtual std::string show() const;
+
         int getDamage() const;
 
         bool isFree() const;

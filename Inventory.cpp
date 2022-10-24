@@ -42,7 +42,11 @@ void Invetory::show(bool missing) const
     {
         if(!inv[i].checkFree())
         {
-            std::cout<<inv[i].getItem().getName()<<": "<<inv[i].getQty()<<"\n";
+            std::cout<<inv[i].getItem().getName()
+                <<": "<<inv[i].getQty()
+                <<"\n"
+                <<inv[i].getItem().show()
+                <<"\n";
         }
         else
         {
