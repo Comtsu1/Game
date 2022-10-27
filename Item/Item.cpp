@@ -37,3 +37,10 @@ bool Item::operator==(const Item& item) const
 {
     return this->getID() == item.getID();
 }
+
+std::string Item::show() const
+{
+    return "Damage: " + std::to_string(m_damage)
+        + "\nID: " + std::to_string(m_id)
+        + "\n";
+}

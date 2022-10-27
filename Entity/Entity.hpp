@@ -4,6 +4,7 @@
 
 #include "../Item/Item.h"
 #include "../Armor/ArmorSet/ArmorSet.hpp"
+#include "../Item/Tool/Tool.h"
 
 class Entity
 {
@@ -19,9 +20,15 @@ class Entity
         inline virtual ArmorSet getArmor() const {return m_armorset;}
         inline virtual void setArmor(ArmorSet set) {m_armorset = set;}
 
-        inline virtual void attack(Entity *entity, Item item)
+        virtual void attack(Entity *entity, Item item)
         {
             entity->damage(item.getDamage() - entity->getArmor().calculateProtection());
+        }
+
+        virtual void attack(Entity *entity, Tool tool)
+        {
+            entity->damage(tool.getDamage() - entity->getArmor().calculateProtection());
+            tool.reduceDurability(2);
         }
 
         inline virtual std::string getVisualAttributes() const
