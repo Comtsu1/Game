@@ -3,6 +3,7 @@
 #include "Item/Item.h"
 #include "Armor/Armor.hpp"
 #include "Armor/ArmorSet/ArmorSet.hpp"
+#include "Item/Tool/Tool.h"
 
 #define NULL_ITEM new Item("You should't have shit, but ok.", -1, 0)
 
@@ -10,8 +11,8 @@
 
 #define APPLE new Item("Apple", 1001, 1)
 
-#define WOODEN_SWORD new Item("Wooden Sword", 910, 3)
-#define STONE_SWORD new Item("Stone Sword", 911, 6)
+#define WOODEN_SWORD new Tool(new Item("Wooden Sword", 910, 3), 30)
+#define STONE_SWORD new Tool(new Item("Stone Sword", 911, 6), 60)
 
 #define COPPER_COIN new Item("Copper Coin", 301, 1)
 #define SILVE_COIN new Item("Silver Coin", 302, 1)
