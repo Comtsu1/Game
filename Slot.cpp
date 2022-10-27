@@ -1,4 +1,5 @@
 #include "Slot.hpp"
+#include "Item/Item.h"
 #include "ItemList.h"
 
 Slot::Slot()
@@ -7,25 +8,27 @@ Slot::Slot()
 
 }
 
-Slot::Slot(Item i, int qty)
-    :m_item(i), m_qty(qty)
+Slot::Slot(Item* item, int qty)
+    :m_item(item), m_qty(qty)
 {
 
 }
 
 bool Slot::checkFree() const
 {
-    return m_item.isFree();
+    return m_item->isFree();
 }
 
-Item Slot::getItem() const
+Item* Slot::getItem() const
 {
-    return m_item;
+    return m_item.get();
 }
 
-void Slot::setItem(Item item)
+void Slot::setItem(Item* item)
 {
-    m_item = item;
+    m_item = std::make_shared<Item>(item->getName(),
+                                    item->getID(),
+                                    item->getDamage());
 }
 
 int Slot::getQty() const

@@ -2,13 +2,13 @@
 #include "../../ItemList.h"
 
 Goblin::Goblin()
-    : Entity(10), m_item(NULL_ITEM)
+    : Entity(10), m_slot(NULL_ITEM, 0)
 {
 
 }
 
-Goblin::Goblin(Item i)
-    : Entity(10), m_item(i)
+Goblin::Goblin(Slot slot)
+    : Entity(10), m_slot(slot.getItem(), slot.getQty())
 {
 
 }

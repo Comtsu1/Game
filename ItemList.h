@@ -4,18 +4,18 @@
 #include "Armor/Armor.hpp"
 #include "Armor/ArmorSet/ArmorSet.hpp"
 
-#define NULL_ITEM Item("You should't have shit, but ok.", -1, 0)
+#define NULL_ITEM new Item("You should't have shit, but ok.", -1, 0)
 
 
 
-#define APPLE Item("Apple", 1001, 1)
+#define APPLE new Item("Apple", 1001, 1)
 
-#define WOODEN_SWORD Item("Wooden Sword", 910, 3)
-#define STONE_SWORD Item("Stone Sword", 911, 6)
+#define WOODEN_SWORD new Item("Wooden Sword", 910, 3)
+#define STONE_SWORD new Item("Stone Sword", 911, 6)
 
-#define COPPER_COIN Item("Copper Coin", 301, 1)
-#define SILVE_COIN Item("Silver Coin", 302, 1)
-#define GOLD_COIN Item("Gold Coin", 303, 1)
+#define COPPER_COIN new Item("Copper Coin", 301, 1)
+#define SILVE_COIN new Item("Silver Coin", 302, 1)
+#define GOLD_COIN new Item("Gold Coin", 303, 1)
 
 #define LEATHER_ARMOR_FULL_SET ArmorSet(LEATHER_ARMOR_HELMET, LEATHER_ARMOR_CHESTPLATE, LEATHER_ARMOR_LEGGINGS, LEATHER_ARMOR_BOOTS)
 #define LEATHER_ARMOR_HELMET Armor(Item("Leather helmet", 10001, 0) , 2)

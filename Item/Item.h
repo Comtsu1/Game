@@ -11,6 +11,7 @@ class Item
     public:
         Item();
         Item(std::string name, int id, int damage);
+        Item(Item* item);
 
         int getID() const;
         

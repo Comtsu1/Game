@@ -16,6 +16,7 @@ int getch();
 
 int main()
 {
+
     // new shit
     srand(time(0));
 
@@ -38,7 +39,8 @@ int main()
                 <<"\t3. Exit\n";
 
         int option; option = getch();
-        switch (option) {
+        switch (option)
+        {
             case (int)('1'):
             case (int)('q'):
                 p->adventure();
@@ -57,6 +59,11 @@ int main()
             case (int)('e'):
                 gamerunning = 0;
                 break;
+        }
+
+        if(p->getHealth() <= 0)
+        {
+            return 0; // player died
         }
     }
 }

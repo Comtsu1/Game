@@ -2,6 +2,8 @@
 #include "../Item/Item.h"
 
 #include "../ItemList.h"
+#include <cstddef>
+#include <memory>
 
 Armor::Armor()
     :Item(NULL_ITEM), m_protection(0)

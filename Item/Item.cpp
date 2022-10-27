@@ -13,6 +13,14 @@ Item::Item(std::string name, int id, int damage)
 
 }
 
+Item::Item(Item* item)
+    :m_name(item->getName()),
+    m_id(item->getID()),
+    m_damage(item->getDamage())
+{
+    delete item;
+}
+
 int Item::getID() const
 {
     return m_id;

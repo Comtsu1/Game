@@ -2,12 +2,14 @@
 
 #include "../Entity.hpp"
 #include "../../Item/Item.h"
+#include "../../Slot.hpp"
+
 
 class Goblin : public Entity
 { 
-    Item m_item;
+    Slot m_slot;
     public:
         Goblin();
-        Goblin(Item i);
+        Goblin(Slot slot);
 };
 
