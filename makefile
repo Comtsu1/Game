@@ -8,7 +8,7 @@ CFLAGS = $(COPTIONS) $(CWARN)
 
 
 
-game: createdir main player inventory goblin adventure getch slot armorset armor item tool
+game: createdir main player inventory goblin adventure getch slot armorset armor item
 	$(CXX) -o game build/* $(CFLAGS)
 
 createdir:
@@ -43,9 +43,6 @@ armor: Armor/Armor.cpp
 
 item: Item/Item.h
 	$(CXX) -c Item/Item.cpp -o build/item.o
-
-tool: Item/Tool/Tool.h
-	$(CXX) -c Item/Tool/Tool.cpp -o build/tool.o
 
 clean:
 	rm build/*
