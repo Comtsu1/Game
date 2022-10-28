@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Item/Item.h"
-#include "Armor/Armor.hpp"
-#include "Armor/ArmorSet/ArmorSet.hpp"
+#include "Item/Armor/ArmorSet/ArmorSet.hpp"
 #include "Item/Tool/Tool.h"
 
 #include <memory>
