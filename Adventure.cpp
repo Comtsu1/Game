@@ -151,6 +151,6 @@ void Adventure::Goblin_Attack(Player *player)
         // implement reward function TODO
         int reward = rand() % 4 + 1;
         std::cout<<"\n\nYou successfully defeated the goblin and got "<<reward<<" copper coins, they amount to shit!\n\n";
-        player->getInvetory().add(Slot(COPPER_COIN, reward));
+        player->getInvetory().add(COPPER_COIN, reward);
     }
 }

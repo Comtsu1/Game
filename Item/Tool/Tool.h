@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Item.h"
+#include <memory>
 #include <string>
 
 class Tool : public Item
@@ -8,7 +9,7 @@ class Tool : public Item
     int m_durability;
     public:
         Tool();
-        Tool(Item* item, int durability);
+        Tool(std::unique_ptr<Item> item, int durability);
 
         int getDurability() const;
 

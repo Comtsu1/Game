@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 
+#include "Item/Tool/Tool.h"
 #include "defines.h"
 #include "ItemList.h"
 
@@ -16,14 +17,13 @@ int getch();
 
 int main()
 {
-
     // new shit
     srand(time(0));
 
     std::unique_ptr<Player> p = std::make_unique<Player>();
 
 
-    p->getInvetory().add(Slot(WOODEN_SWORD, 1));
+    p->getInvetory().add(std::move(WOODEN_SWORD), 1);
     // p->setArmor(LEATHER_ARMOR_FULL_SET);
 
     bool gamerunning = 1;

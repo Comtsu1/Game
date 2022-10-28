@@ -5,18 +5,19 @@
 #include "Armor/ArmorSet/ArmorSet.hpp"
 #include "Item/Tool/Tool.h"
 
-#define NULL_ITEM new Item("You should't have shit, but ok.", -1, 0)
+#include <memory>
+
+#define NULL_ITEM std::make_unique<Item>("You should't have shit, but ok.", -1, 0)
 
 
+#define APPLE std::make_unique<Item>("Apple", 1001, 1)
 
-#define APPLE new Item("Apple", 1001, 1)
+#define WOODEN_SWORD std::make_unique<Tool>(std::make_unique<Item>(Item("Wooden Sword", 910, 3)), 30)
+#define STONE_SWORD std::make_unique<Tool>(std::make_unique<Item>("Stone Sword", 911, 6), 60)
 
-#define WOODEN_SWORD new Tool(new Item("Wooden Sword", 910, 3), 30)
-#define STONE_SWORD new Tool(new Item("Stone Sword", 911, 6), 60)
-
-#define COPPER_COIN new Item("Copper Coin", 301, 1)
-#define SILVE_COIN new Item("Silver Coin", 302, 1)
-#define GOLD_COIN new Item("Gold Coin", 303, 1)
+#define COPPER_COIN std::make_unique<Item>("Copper Coin", 301, 1)
+#define SILVE_COIN std::make_unique<Item>("Silver Coin", 302, 1)
+#define GOLD_COIN std::make_unique<Item>("Gold Coin", 303, 1)
 
 #define LEATHER_ARMOR_FULL_SET ArmorSet(LEATHER_ARMOR_HELMET, LEATHER_ARMOR_CHESTPLATE, LEATHER_ARMOR_LEGGINGS, LEATHER_ARMOR_BOOTS)
 #define LEATHER_ARMOR_HELMET Armor(Item("Leather helmet", 10001, 0) , 2)

@@ -1,5 +1,4 @@
 #include "Item.h"
-#include <string>
 
 Item::Item()
     :m_name("You shouldn't have this, but ok..."), m_id(-1), m_damage(-69420)
@@ -11,14 +10,6 @@ Item::Item(std::string name, int id, int damage)
     :m_name(name), m_id(id), m_damage(damage)
 {
 
-}
-
-Item::Item(Item* item)
-    :m_name(item->getName()),
-    m_id(item->getID()),
-    m_damage(item->getDamage())
-{
-    delete item;
 }
 
 int Item::getID() const

@@ -1,12 +1,10 @@
 #include "Tool.h"
-#include <ios>
-#include <string>
 
 Tool::Tool()
 {}
 
-Tool::Tool(Item* item, int durability)
-    :Item(item),
+Tool::Tool(std::unique_ptr<Item> item, int durability)
+    :Item(item->getName(), item->getID(), item->getDamage()),
     m_durability(durability)
 {}
 
