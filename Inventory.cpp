@@ -19,18 +19,19 @@ Invetory::~Invetory()
 
 }
 
-void Invetory::add(const Slot& slot)
+void Invetory::add(std::unique_ptr<Item> item, const int& qty)
 {
     for(int i = 0; i < 10; ++i)
     {
-        if(inv[i].getItem() == slot.getItem())
+        if(*inv[i].getItem() == *item.get())
         {
-            inv[i].addQty(slot.getQty());
+            inv[i].addQty(qty);
             return;
         }
         else if(inv[i].checkFree())
-        {
-            inv[i] = slot;
+        { // moving the item to a new Slot without CREATING A NEW SLOT
+          // you dumb dumb
+            inv[i].setItem(std::move(item), qty);
             return;
         }
     }
@@ -42,10 +43,10 @@ void Invetory::show(bool missing) const
     {
         if(!inv[i].checkFree())
         {
-            std::cout<<inv[i].getItem().getName()
+            std::cout<<inv[i].getItem()->getName()
                 <<": "<<inv[i].getQty()
                 <<"\n"
-                <<inv[i].getItem().show()
+                <<inv[i].getItem()->show()
                 <<"\n";
         }
         else

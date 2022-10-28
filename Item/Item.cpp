@@ -1,5 +1,4 @@
 #include "Item.h"
-#include <string>
 
 Item::Item()
     :m_name("You shouldn't have this, but ok..."), m_id(-1), m_damage(-69420)
@@ -40,7 +39,7 @@ bool Item::operator==(const Item& item) const
 
 std::string Item::show() const
 {
-    return "Damage: " + std::to_string(m_damage)
-        + "\nID: " + std::to_string(m_id)
+    return "\tDamage: " + std::to_string(m_damage)
+        + "\n\tID: " + std::to_string(m_id)
         + "\n";
 }

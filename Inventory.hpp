@@ -12,7 +12,7 @@ class Invetory
         Invetory();
         ~Invetory();
     
-        void add(const Slot& slot);
+        void add(std::unique_ptr<Item> item, const int& qty);
         void show(bool missing = 0) const;
         void remove(const int& index);
 

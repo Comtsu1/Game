@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdlib>
+#include <memory>
 
 #include "../Item/Item.h"
 #include "../Armor/ArmorSet/ArmorSet.hpp"
@@ -19,9 +20,14 @@ class Entity
         inline virtual ArmorSet getArmor() const {return m_armorset;}
         inline virtual void setArmor(ArmorSet set) {m_armorset = set;}
 
-        virtual void attack(Entity *entity, Item item)
+        virtual void attack(Entity *entity, std::unique_ptr<Item> item)
         {
-            entity->damage(item.getDamage() - entity->getArmor().calculateProtection());
+            entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
+        }
+        
+        virtual void attack(Entity *entity, Item* item)
+        {
+            entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
         }
 
         inline virtual std::string getVisualAttributes() const

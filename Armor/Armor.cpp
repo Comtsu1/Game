@@ -2,9 +2,14 @@
 #include "../Item/Item.h"
 
 #include "../ItemList.h"
+#include <cstddef>
+#include <memory>
 
 Armor::Armor()
-    :Item(NULL_ITEM), m_protection(0)
+    :Item(NULL_ITEM->getName(),
+            NULL_ITEM->getID(),
+            NULL_ITEM->getDamage()),
+    m_protection(0)
 {
 
 }

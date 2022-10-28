@@ -2,6 +2,9 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <unistd.h>
+
+#include "defines.h"
 
 #include "Entity/Goblin/Goblin.hpp"
 #include "ItemList.h"
@@ -32,6 +35,7 @@ void Adventure::Goblin_Attack(Player *player)
         <<"> ";
     int op;
     op = getch();
+    std::cout<<"op: "<<(char)op<<"\n";
     
     if(op == 'l' || op == 'L')
     {
@@ -57,12 +61,12 @@ void Adventure::Goblin_Attack(Player *player)
             if(rand() % 100)
             { // very stupid man right here
                 std::cout<<"\nYou and the goblin just stay in your places, waiting for something to happen.\n";
-                break;
             }
             else
             {
                 std::cout<<"\nLike one in a hundred, you got caught by the goblin even thought you didn't do anything. Prepare!\n\n";
-                return;
+                sleep(2);
+                break;
             }
             
             std::cout << "You still see the goblin"
@@ -95,7 +99,6 @@ void Adventure::Goblin_Attack(Player *player)
         {
             player->attack(&goblin, player->getInvetory()[0].getItem());
             goblin.attack(player, WOODEN_SWORD);
-            if(goblin.getHealth() <= 0) break; // forced brake 
         }
         else if(op == 'i' || op == 'I')
         {
@@ -112,7 +115,7 @@ void Adventure::Goblin_Attack(Player *player)
             else
             { // gets caught
                 std::cout<<"\n\nYou escaped without the goblin noticing you.\n";
-                std::system("sleep 1");
+                sleep(1);
                 return;
             }
         }
@@ -122,6 +125,16 @@ void Adventure::Goblin_Attack(Player *player)
                 <<"the goblin hit you with his sword he had.\n";
             goblin.attack(player, WOODEN_SWORD);
         }
+        
+
+        if(goblin.getHealth() <= 0) break; // forced brake 
+        if(player->getHealth() <= 0)
+        {
+            std::cout<<"\n\nYou died, too bad!...";
+            sleep(1);
+            return;
+        }
+
         std::cout<<"You are mid-battle"
             <<"\n\tGolbin: " << goblin.getHealth()
             <<"\n\tYou: " <<player->getHealth()
@@ -138,6 +151,6 @@ void Adventure::Goblin_Attack(Player *player)
         // implement reward function TODO
         int reward = rand() % 4 + 1;
         std::cout<<"\n\nYou successfully defeated the goblin and got "<<reward<<" copper coins, they amount to shit!\n\n";
-        player->getInvetory().add(Slot(COPPER_COIN, reward));
+        player->getInvetory().add(COPPER_COIN, reward);
     }
 }

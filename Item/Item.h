@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 class Item
@@ -11,6 +12,7 @@ class Item
     public:
         Item();
         Item(std::string name, int id, int damage);
+        //Item(const std::unique_ptr<Item> item);
 
         int getID() const;
         

@@ -1,26 +1,30 @@
 #pragma once
 
-
 #include "Item/Item.h"
 #include "ItemList.h"
+#include <memory>
 #include <utility>
 #include <string>
 
 class Slot
 {
     protected:
-        Item m_item;
+        std::unique_ptr<Item> m_item;
         int m_qty;
     public:
         Slot();
-        Slot(Item item, int qty);
+        Slot(std::unique_ptr<Item> item, int qty);
+        Slot(Item* item, int qty);
         bool checkFree() const;
 
-        Item getItem() const;
-        void setItem(Item item);
+        Item* getItem() const;
+        std::unique_ptr<Item>& getUniqueItem();
+
+        void setItem(std::unique_ptr<Item> item, const int& qty = 1);
+        void setItem(Slot& slot);
 
         int getQty() const;
-        void setQty(int qty);
-        void addQty(int qty);
-        void removeQty(int qty);
+        void setQty(const int& qty);
+        void addQty(const int& qty);
+        void removeQty(const int& qty);
 };

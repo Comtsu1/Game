@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 
+#include "Item/Tool/Tool.h"
 #include "defines.h"
 #include "ItemList.h"
 
@@ -22,7 +23,7 @@ int main()
     std::unique_ptr<Player> p = std::make_unique<Player>();
 
 
-    p->getInvetory().add(Slot(WOODEN_SWORD, 1));
+    p->getInvetory().add(std::move(WOODEN_SWORD), 1);
     // p->setArmor(LEATHER_ARMOR_FULL_SET);
 
     bool gamerunning = 1;
@@ -38,7 +39,8 @@ int main()
                 <<"\t3. Exit\n";
 
         int option; option = getch();
-        switch (option) {
+        switch (option)
+        {
             case (int)('1'):
             case (int)('q'):
                 p->adventure();
@@ -57,6 +59,11 @@ int main()
             case (int)('e'):
                 gamerunning = 0;
                 break;
+        }
+
+        if(p->getHealth() <= 0)
+        {
+            return 0; // player died
         }
     }
 }
