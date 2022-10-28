@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "../Item/Item.h"
-#include "../Armor/ArmorSet/ArmorSet.hpp"
+#include "../Item/Armor/ArmorSet/ArmorSet.hpp"
 
 class Entity
 {

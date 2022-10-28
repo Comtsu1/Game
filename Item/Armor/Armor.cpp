@@ -1,9 +1,6 @@
 #include "Armor.hpp"
-#include "../Item/Item.h"
 
-#include "../ItemList.h"
-#include <cstddef>
-#include <memory>
+#include "../../ItemList.h"
 
 Armor::Armor()
     :Item(NULL_ITEM->getName(),

@@ -35,11 +35,11 @@ getch: getch.cpp
 slot: Slot.cpp
 	$(CXX) -c ./Slot.cpp -o build/slot.o $(CFLAGS)
 
-armorset: Armor/ArmorSet/ArmorSet.cpp
-	$(CXX) -c Armor/ArmorSet/ArmorSet.cpp -o build/armorset.o $(CFLAGS)
+armorset: Item/Armor/ArmorSet/ArmorSet.cpp
+	$(CXX) -c Item/Armor/ArmorSet/ArmorSet.cpp -o build/armorset.o $(CFLAGS)
 
-armor: Armor/Armor.cpp
-	$(CXX) -c Armor/Armor.cpp -o build/armor.o $(CFLAGS)
+armor: Item/Armor/Armor.cpp
+	$(CXX) -c Item/Armor/Armor.cpp -o build/armor.o $(CFLAGS)
 
 item: Item/Item.cpp
 	$(CXX) -c Item/Item.cpp -o build/item.o $(CFLAGS)
