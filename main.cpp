@@ -13,6 +13,9 @@
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"
 
+#include "Battle.h"
+#include "Stats.h"
+
 int getch();
 
 int main()
@@ -21,7 +24,6 @@ int main()
     srand(time(0));
 
     std::unique_ptr<Player> p = std::make_unique<Player>();
-
 
     p->getInvetory().add(std::move(WOODEN_SWORD), 1);
     // p->setArmor(LEATHER_ARMOR_FULL_SET);
@@ -43,6 +45,7 @@ int main()
         {
             case (int)('1'):
             case (int)('q'):
+                std::system("clear");
                 p->adventure();
                 break;
             case (int)('2'):

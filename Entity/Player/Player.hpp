@@ -18,6 +18,9 @@ class Player : public Entity
         
         void adventure();
 
+        int getFood() const;
+        int getWater() const;
+
         Invetory& getInvetory();
 };
 

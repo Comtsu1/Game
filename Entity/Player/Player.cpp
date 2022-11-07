@@ -22,3 +22,13 @@ void Player::adventure()
 {
     Adventure::generageAdventure(this);
 }
+
+int Player::getFood() const
+{
+    return this->m_foodlevel;
+}
+
+int Player::getWater() const
+{
+    return this->m_waterlevel;
+}
