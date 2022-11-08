@@ -16,7 +16,8 @@
 #include "Battle.h"
 #include "Stats.h"
 
-int getch();
+void clearScreen(); // from getch.cpp
+int getch(); // from getch.cpp
 
 int main()
 {
@@ -30,7 +31,7 @@ int main()
 
     bool gamerunning = 1;
 
-    std::system("clear"); // clears the screen for the start of the game
+    clearScreen(); // clears the screen for the start of the game
 
     while(gamerunning)
     {
@@ -45,7 +46,7 @@ int main()
         {
             case (int)('1'):
             case (int)('q'):
-                std::system("clear");
+                clearScreen();
                 p->adventure();
                 break;
             case (int)('2'):
@@ -56,7 +57,7 @@ int main()
                 std::cout<<CONTINUE_MESSAGE;
                 getch();
 
-                std::system("clear");
+                clearScreen();
                 break;
             case (int)('3'):
             case (int)('e'):
@@ -68,5 +69,7 @@ int main()
         {
             return 0; // player died
         }
+
+        clearScreen();
     }
 }

@@ -4,14 +4,15 @@
 #include "Stats.h"
 
 
-int getch();
+void clearScreen(); // from getch.cpp
+int getchr(); // from getch.cpp
 
 
 void Battle::newBattle(Player* player,
                         Entity* enemy)
 {
     // TODO implement battle here
-    
+
     std::cout << "You have encountered an entity:"
         <<"\n\tEntity: " << enemy->getHealth()
         <<"\n\tYou: "<< player->getHealth()
@@ -23,9 +24,9 @@ void Battle::newBattle(Player* player,
         <<"> ";
 
     int op;
-    op = getch();
+    op = getchr();
     std::cout<<"op: "<<(char)op<<"\n";
-    
+
     if(op == 'l' || op == 'L')
     {
         if(rand() % 10)
@@ -46,7 +47,7 @@ void Battle::newBattle(Player* player,
             || op == 'l' || op == 'L'
                ))
         {
-            std::system("clear");
+            clearScreen();
             if(rand() % 100)
             { // very stupid man right here
                 std::cout<<"\nYou and the goblin just stay in your places, waiting for something to happen.\n";
@@ -57,14 +58,14 @@ void Battle::newBattle(Player* player,
                 sleep(2);
                 break;
             }
-            
+
             std::cout << "You still see the goblin"
                 <<", what would you like to do?\n"
                 <<"\tAttack(a/A)\n"
                 <<"\tInspect visually(i/I)\n"
                 <<"\tLeave(l/L)\n"
                 <<"\tNothing(anything else)\n"
-                <<"> "; op = getch();
+                <<"> "; op = getchr();
         }
 
         if(op == 'l' || op == 'L')
@@ -83,7 +84,7 @@ void Battle::newBattle(Player* player,
 
     while(enemy->getHealth() > 0)
     {
-        std::system("clear");
+        clearScreen();
         if(op == 'a' || op == 'A')
         {
             player->attack(enemy, player->getInvetory()[0].getItem());
@@ -108,15 +109,15 @@ void Battle::newBattle(Player* player,
                 return;
             }
         }
-        else 
+        else
         {
             std::cout<<"Because you are stupid, and did nothing "
                 <<"the goblin hit you with his sword he had.\n";
             enemy->attack(player, WOODEN_SWORD);
         }
-        
 
-        if(enemy->getHealth() <= 0) break; // forced brake 
+
+        if(enemy->getHealth() <= 0) break; // forced brake
         if(player->getHealth() <= 0)
         {
             std::cout<<"\n\nYou died, too bad!...";
@@ -132,7 +133,7 @@ void Battle::newBattle(Player* player,
             <<"\tInspect visually(i/I)\n"
             <<"\tRun(r/R)\n"
             <<"\tNothing(anything else)\n"
-            <<"> "; op = getch();
+            <<"> "; op = getchr();
     }
 
 }

@@ -2,7 +2,7 @@
 
 #include "Entity/Player/Player.hpp"
 
-int getch();
+int getchr();
 
 class Adventure
 {
