@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <thread>
+#include <chrono>
 
 #include "Battle.h"
 #include "Stats.h"
@@ -20,18 +22,19 @@ void Battle::newBattle(Player* player,
         <<"\tAttack(a/A)\n"
         <<"\tInspect visually(i/I)\n"
         <<"\tLeave(l/L)\n"
+        <<"\tShow Stats(s/S)\n"
         <<"\tNothing(anything else)\n"
         <<"> ";
 
     int op;
     op = getchr();
-    std::cout<<"op: "<<(char)op<<"\n";
 
     if(op == 'l' || op == 'L')
     {
         if(rand() % 10)
         { // escapes
             std::cout<<"\n\nYou escaped without the goblin noticing you.\n";
+            sleep(2);
             return;
         }
         else
@@ -43,14 +46,25 @@ void Battle::newBattle(Player* player,
     {
         while(!(
             op == 'a' || op == 'A'
-            || op == 'i' || op == 'I'
             || op == 'l' || op == 'L'
                ))
         {
             clearScreen();
             if(rand() % 100)
             { // very stupid man right here
-                std::cout<<"\nYou and the goblin just stay in your places, waiting for something to happen.\n";
+                if(op == 'i' || op == 'I')
+                { // show the goblin's stats only if the goblin didn't see the player
+                    std::cout<<"\nThe goblin has: "<<enemy->getArmor().getString()
+                        <<".";
+                }
+                else if(op == 's' || op == 'S')
+                {
+                    Stats::showStats(player);
+                    getchr(); // waits for user input
+                    clearScreen();
+                }
+
+                std::cout<<"\nYou and the goblin just stay in your places, waiting for something to happen.\n\n";
             }
             else
             {
@@ -64,6 +78,7 @@ void Battle::newBattle(Player* player,
                 <<"\tAttack(a/A)\n"
                 <<"\tInspect visually(i/I)\n"
                 <<"\tLeave(l/L)\n"
+                <<"\tShow Stats(s/S)\n"
                 <<"\tNothing(anything else)\n"
                 <<"> "; op = getchr();
         }
@@ -108,6 +123,12 @@ void Battle::newBattle(Player* player,
                 sleep(1);
                 return;
             }
+        } 
+        else if(op == 's' || op == 'S')
+        {
+            Stats::showStats(player);
+            getchr(); // user input
+            clearScreen();
         }
         else
         {
@@ -125,6 +146,9 @@ void Battle::newBattle(Player* player,
             return;
         }
 
+
+        //std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
         std::cout<<"You are mid-battle"
             <<"\n\tGolbin: " << enemy->getHealth()
             <<"\n\tYou: " <<player->getHealth()
@@ -132,6 +156,7 @@ void Battle::newBattle(Player* player,
             <<"\tAttack(a/A)\n"
             <<"\tInspect visually(i/I)\n"
             <<"\tRun(r/R)\n"
+            <<"\tShow Stats(s/S)\n"
             <<"\tNothing(anything else)\n"
             <<"> "; op = getchr();
     }

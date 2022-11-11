@@ -10,9 +10,28 @@ class Entity
 {
     private:
         double m_health;
+
+        int m_foodlevel;
+        int m_waterlevel;
+
         ArmorSet m_armorset;
     public:
-        Entity(int h): m_health(h) {};
+        Entity(int h) :m_health(h), 
+                        m_foodlevel(100),
+                        m_waterlevel(100){};
+        Entity(int h, int food, int water): m_health(h),
+                                            m_foodlevel(food),
+                                            m_waterlevel(water){};
+
+        int getFood() const
+        {
+            return this->m_foodlevel;
+        }
+
+        int getWater() const
+        {
+            return this->m_waterlevel;
+        }
 
         inline virtual void damage(double amount) {m_health-=amount;}
         inline virtual void heal(double amount) { m_health+=amount;}

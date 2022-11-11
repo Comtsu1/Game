@@ -17,6 +17,8 @@ void Stats::showStats(Player* player)
         else std::cout<<".";
     }
 
+    std::cout<<"\n";
+
     std::cout<<"Water level: ";
     for(int food = 0; food <= 100; food += 10)
     {
@@ -24,5 +26,5 @@ void Stats::showStats(Player* player)
         else std::cout<<".";
     }
 
-    std::cout<<"\n\n";
+    std::cout<<"\n";
 }

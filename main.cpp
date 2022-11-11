@@ -17,7 +17,7 @@
 #include "Stats.h"
 
 void clearScreen(); // from getch.cpp
-int getch(); // from getch.cpp
+int getchr(); // from getch.cpp
 
 int main()
 {
@@ -41,7 +41,7 @@ int main()
                 <<"\t2. View Inventory\n"
                 <<"\t3. Exit\n";
 
-        int option; option = getch();
+        int option; option = getchr();
         switch (option)
         {
             case (int)('1'):
@@ -55,7 +55,7 @@ int main()
                 p->getInvetory().show();
 
                 std::cout<<CONTINUE_MESSAGE;
-                getch();
+                getchr();
 
                 clearScreen();
                 break;

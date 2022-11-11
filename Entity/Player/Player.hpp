@@ -7,9 +7,6 @@
 
 class Player : public Entity
 {
-    int m_waterlevel;
-    int m_foodlevel;
-    
     Invetory m_inv;
 
     public:
@@ -17,9 +14,6 @@ class Player : public Entity
         Player(double h, int wl, int fl);
         
         void adventure();
-
-        int getFood() const;
-        int getWater() const;
 
         Invetory& getInvetory();
 };

@@ -4,12 +4,12 @@
 #include "../../Inventory.hpp"
 
 Player::Player(double h, int wl, int fl)
-    :Entity(h), m_waterlevel(wl), m_foodlevel(fl)
+    :Entity(h, wl, fl)
 {
 }
 
 Player::Player()
-    :Entity(100), m_waterlevel(100), m_foodlevel(100)
+    :Entity(100)
 {
 }
 
@@ -21,14 +21,4 @@ Invetory& Player::getInvetory()
 void Player::adventure()
 {
     Adventure::generageAdventure(this);
-}
-
-int Player::getFood() const
-{
-    return this->m_foodlevel;
-}
-
-int Player::getWater() const
-{
-    return this->m_waterlevel;
 }
