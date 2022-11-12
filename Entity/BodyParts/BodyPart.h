@@ -1,5 +1,11 @@
 #pragma once
 
+enum class Parts
+{
+    left,
+    right,
+};
+
 class BodyPart
 {
     int m_health;

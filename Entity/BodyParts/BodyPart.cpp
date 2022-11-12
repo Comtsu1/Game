@@ -8,7 +8,7 @@ BodyPart::BodyPart(int hp)
 
 int BodyPart::getHealth() const
 {
-    return this->m_health;
+    return m_health;
 }
 
 void BodyPart::setHealth(int value)
@@ -18,7 +18,7 @@ void BodyPart::setHealth(int value)
 
 void BodyPart::damage(int amount)
 {
-    m_health += amount;
+    m_health -= amount;
 }
 
 void BodyPart::heal(int amount)

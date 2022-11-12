@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <cstdlib>
-#include <memory>
 
 #include <unistd.h> // for STDIN_FILENO
 

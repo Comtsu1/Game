@@ -2,59 +2,42 @@
 
 #include <cstdlib>
 #include <memory>
+#include <string>
 
 #include "../Item/Item.h"
 #include "../Item/Armor/ArmorSet/ArmorSet.hpp"
 
+#include "BodyParts/BodyPart.h"
+
 class Entity
 {
     private:
+        // TODO improve m_health 
         double m_health;
-
-        int m_foodlevel;
-        int m_waterlevel;
 
         ArmorSet m_armorset;
     public:
-        Entity(int h) :m_health(h), 
-                        m_foodlevel(100),
-                        m_waterlevel(100){};
-        Entity(int h, int food, int water): m_health(h),
-                                            m_foodlevel(food),
-                                            m_waterlevel(water){};
+        Entity();
+        Entity(int h);
 
-        int getFood() const
-        {
-            return this->m_foodlevel;
-        }
+        virtual bool isDead() = 0;
 
-        int getWater() const
-        {
-            return this->m_waterlevel;
-        }
+        std::string virtual status() = 0;
 
-        inline virtual void damage(double amount) {m_health-=amount;}
-        inline virtual void heal(double amount) { m_health+=amount;}
+        void virtual damagePart(BodyPart* part, int amount) = 0;
 
-        inline virtual ArmorSet getArmor() const {return m_armorset;}
-        inline virtual void setArmor(ArmorSet set) {m_armorset = set;}
+        virtual void damage(double amount);
+        virtual void heal(double amount);
 
-        virtual void attack(Entity *entity, std::unique_ptr<Item> item)
-        {
-            entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
-        }
-        
-        virtual void attack(Entity *entity, Item* item)
-        {
-            entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
-        }
+        virtual ArmorSet getArmor() const;
+        virtual void setArmor(ArmorSet set);
 
-        inline virtual std::string getVisualAttributes() const
-        {
-            return m_armorset.getString();
-        }
+        virtual void attack(Entity *entity, std::unique_ptr<Item> item);
+        virtual void attack(Entity *entity, Item* item);
 
-        double virtual getHealth() const {return m_health;}
+        virtual std::string getVisualAttributes() const;
+
+        double virtual getHealth() const;
 
 
 };

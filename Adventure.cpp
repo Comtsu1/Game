@@ -28,11 +28,12 @@ void Adventure::Goblin_Attack(Player *player)
     
     Battle::newBattle(player, goblin.get());
 
-    if(goblin->getHealth() <= 0)
+    if(goblin->isDead())
     {
         // implement reward function TODO
         int reward = rand() % 4 + 1;
         std::cout<<"\n\nYou successfully defeated the goblin and got "<<reward<<" copper coins, they amount to shit!\n\n";
         player->getInvetory().add(COPPER_COIN, reward);
+        sleep(2);
     }
 }

@@ -11,13 +11,13 @@ int getchr(); // from getch.cpp
 
 
 void Battle::newBattle(Player* player,
-                        Entity* enemy)
+                        Goblin* enemy)
 {
     // TODO implement battle here
 
     std::cout << "You have encountered an entity:"
-        <<"\n\tEntity: " << enemy->getHealth()
-        <<"\n\tYou: "<< player->getHealth()
+        <<"\n\tEntity's status: " << enemy->status()
+        <<"\n\tYou(hp): "<< player->getHealth()
         <<"\nWhat would you like to do?\n"
         <<"\tAttack(a/A)\n"
         <<"\tInspect visually(i/I)\n"
@@ -102,8 +102,11 @@ void Battle::newBattle(Player* player,
         clearScreen();
         if(op == 'a' || op == 'A')
         {
-            player->attack(enemy, player->getInvetory()[0].getItem());
+            clearScreen();
+            enemy->selectBodyPart(nullptr);
+            //player->attack(enemy, player->getInvetory()[0].getItem());
             enemy->attack(player, WOODEN_SWORD);
+            clearScreen();
         }
         else if(op == 'i' || op == 'I')
         {
@@ -138,8 +141,8 @@ void Battle::newBattle(Player* player,
         }
 
 
-        if(enemy->getHealth() <= 0) break; // forced brake
-        if(player->getHealth() <= 0)
+        if(enemy->isDead()) break; // forced brake
+        if(player->isDead())
         {
             std::cout<<"\n\nYou died, too bad!...";
             sleep(1);
@@ -150,8 +153,8 @@ void Battle::newBattle(Player* player,
         //std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
         std::cout<<"You are mid-battle"
-            <<"\n\tGolbin: " << enemy->getHealth()
-            <<"\n\tYou: " <<player->getHealth()
+            <<"\n\tGolbin's status: " << enemy->status()
+            <<"\n\tYou(hp): " <<player->getHealth()
             <<"\nWhat would you like to do?\n"
             <<"\tAttack(a/A)\n"
             <<"\tInspect visually(i/I)\n"
