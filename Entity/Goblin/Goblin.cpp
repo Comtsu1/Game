@@ -31,13 +31,18 @@ Goblin::Goblin(Slot slot)
     m_rigthLeg = std::make_unique<Leg>();
 }
 
+void Goblin::update()
+{
+
+}
+
 std::string Goblin::status()
 {
     int hp = getChest()->getHealth();
 
     return hp > 7 ? "Good" :
-        (hp >= 5 ? "Beaten" :
-         (hp >= 3 ? "Badly Beaten" : "Near Death" ) );
+        (hp >= 5 ? "Hurt" :
+         (hp >= 3 ? "Beaten" : "Badly Beaten" ) );
 }
 
 Head* Goblin::getHead()
@@ -72,6 +77,16 @@ Leg* Goblin::getLeg(Parts which)
     return nullptr;
 }
 
+void Goblin::showBodyStatus()
+{
+    std::cout << "\n\tHead: " << m_head->status()
+                <<"\n\tChest: " << m_chest->status()
+                <<"\n\tArm (left and right): \n\t\t"
+                << m_leftArm->status() << " and " << m_rigthArm->status()
+                <<"\n\tLeg (left and right): \n\t\t"
+                << m_leftLeg->status() << " and " << m_rigthLeg->status();
+}
+
 void Goblin::damagePart(BodyPart *part, int amount)
 {
     part->damage(amount);
@@ -79,8 +94,9 @@ void Goblin::damagePart(BodyPart *part, int amount)
 
 bool Goblin::isDead()
 {
-    return this->getChest()->getHealth() <= 0;
-    return false;
+    return this->getHead()->getHealth() < 0 ? true :
+        (this->getChest()->getHealth() < 0 ? true :
+         false);
 }
 
 void Goblin::selectBodyPart(Item* item)

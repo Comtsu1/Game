@@ -33,6 +33,8 @@ class Player : public Entity
         
         bool isDead();
 
+        void update();
+
         std::string status();
 
         void adventure();

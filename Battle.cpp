@@ -3,6 +3,10 @@
 #include <chrono>
 
 #include "Battle.h"
+
+#include "Entity/Entity.hpp"
+#include "Entity/Goblin/Goblin.hpp"
+
 #include "Stats.h"
 
 
@@ -56,6 +60,9 @@ void Battle::newBattle(Player* player,
                 { // show the goblin's stats only if the goblin didn't see the player
                     std::cout<<"\nThe goblin has: "<<enemy->getArmor().getString()
                         <<".";
+
+                    std::cout<<"State of Goblin: "; enemy->showBodyStatus();
+                    std::cout<<"\n\n";
                 }
                 else if(op == 's' || op == 'S')
                 {
@@ -111,7 +118,10 @@ void Battle::newBattle(Player* player,
         else if(op == 'i' || op == 'I')
         {
             std::cout<<"\nThe goblin has: "<<enemy->getArmor().getString()
-                <<"\n\n";
+                <<"\n";
+
+            std::cout<<"State of Goblin: "; enemy->showBodyStatus();
+            std::cout<<"\n\n";
         }
         else if(op == 'r' || op == 'R')
         {
@@ -148,6 +158,11 @@ void Battle::newBattle(Player* player,
             sleep(1);
             return;
         }
+
+        player->update();
+        enemy->update();
+
+        // start of new round
 
 
         //std::this_thread::sleep_for(std::chrono::milliseconds(2000));

@@ -24,6 +24,8 @@ class Entity
 
         std::string virtual status() = 0;
 
+        void virtual update() = 0;
+
         void virtual damagePart(BodyPart* part, int amount) = 0;
 
         virtual void damage(double amount);
@@ -34,7 +36,8 @@ class Entity
 
         virtual void attack(Entity *entity, std::unique_ptr<Item> item);
         virtual void attack(Entity *entity, Item* item);
-
+    
+        // TODO ghosts can't have armor, can they?!
         virtual std::string getVisualAttributes() const;
 
         double virtual getHealth() const;

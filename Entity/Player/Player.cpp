@@ -33,12 +33,17 @@ Player::Player()
     m_rigthLeg = std::make_unique<Leg>();
 }
 
+void Player::update()
+{
+
+}
+
 std::string Player::status()
 {
     int hp = this->getHealth();
     return hp > 70 ? "Good" :
-        (hp >= 50 ? "Beaten" :
-         (hp >= 30 ? "Badly Beaten" : "Near Death" ));
+        (hp >= 50 ? "Hurt" :
+         (hp >= 30 ? "Beaten" : "Badly Beaten" ));
 }
 
 Invetory& Player::getInvetory() 

@@ -27,10 +27,14 @@ class Goblin : public Entity
 
         std::string status();
 
+        void update();
+
         Head* getHead();
         Chest* getChest();
         Arm* getArm(Parts which);
         Leg* getLeg(Parts which);
+
+        void showBodyStatus();
 
         void selectBodyPart(Item* item);
 

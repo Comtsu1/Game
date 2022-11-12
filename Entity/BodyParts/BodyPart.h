@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 enum class Parts
 {
     left,
@@ -13,6 +14,8 @@ class BodyPart
     public:
         BodyPart();
         BodyPart(int hp);
+
+        std::string virtual status() = 0;
 
         int getHealth() const;
         void setHealth(int value);
