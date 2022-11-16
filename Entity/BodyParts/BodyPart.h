@@ -9,6 +9,7 @@ enum class Parts
 
 class BodyPart
 {
+    int m_inithealth;
     int m_health;
 
     public:
@@ -16,6 +17,8 @@ class BodyPart
         BodyPart(int hp);
 
         std::string virtual status() = 0;
+
+        int getInitHealth() const;
 
         int getHealth() const;
         void setHealth(int value);

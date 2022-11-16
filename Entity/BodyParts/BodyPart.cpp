@@ -2,9 +2,14 @@
 #include "Head.h"
 
 BodyPart::BodyPart()
-    :m_health(10) {}
+    :m_inithealth(10), m_health(10) {}
 BodyPart::BodyPart(int hp)
-    :m_health(hp) {}
+    :m_inithealth(hp), m_health(hp) {}
+
+int BodyPart::getInitHealth() const
+{
+    return m_inithealth;
+}
 
 int BodyPart::getHealth() const
 {

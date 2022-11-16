@@ -38,11 +38,18 @@ void Goblin::update()
 
 std::string Goblin::status()
 {
-    int hp = getChest()->getHealth();
+    double amount = getChest()->getHealth() > getHead()->getHealth() ? 
+                        (double(getHead()->getHealth()) / getHead()->getInitHealth() * 100)
+                            :
+                        (double(getChest()->getHealth()) / getChest()->getInitHealth() * 100);
+       // ( 3 * (double(getChest()->getHealth()) / getChest()->getInitHealth())
+       // + (double(getHead()->getHealth()) / getHead()->getInitHealth()) ) * 25.0;
 
-    return hp > 7 ? "Good" :
-        (hp >= 5 ? "Hurt" :
-         (hp >= 3 ? "Beaten" : "Badly Beaten" ) );
+    std::cout<<amount;
+
+    return amount > 70.0 ? "Good" :
+        (amount >= 50.0 ? "Hurt" :
+         (amount >= 30.0 ? "Beaten" : "Badly Beaten" ) );
 }
 
 Head* Goblin::getHead()
@@ -115,24 +122,30 @@ void Goblin::selectBodyPart(Item* item)
 
     // TODO add weapon support
     // TODO implement enum for easier recognition
+    
+    int amount = item->getDamage();
+
     switch (option) {
         case '1':
-            this->getHead()->damage(1);
+            this->getHead()->damage(amount);
             break;
         case '2':
-            this->getChest()->damage(1);
+            this->getChest()->damage(amount);
             break;
         case '3':
-            this->getArm(Parts::left)->damage(1);
+            this->getArm(Parts::left)->damage(amount);
             break;
         case '4':
-            this->getArm(Parts::right)->damage(1);
+            this->getArm(Parts::right)->damage(amount);
             break;
         case '5':
             this->getLeg(Parts::left)->damage(1);
             break;
         case '6':
             this->getLeg(Parts::right)->damage(1);
+            break;
+        default:
+            std::cout<<"shit mate!";
             break;
     }
 }

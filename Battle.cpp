@@ -110,7 +110,7 @@ void Battle::newBattle(Player* player,
         if(op == 'a' || op == 'A')
         {
             clearScreen();
-            enemy->selectBodyPart(nullptr);
+            enemy->selectBodyPart(player->getInvetory()[0].getItem());
             //player->attack(enemy, player->getInvetory()[0].getItem());
             enemy->attack(player, WOODEN_SWORD);
             clearScreen();

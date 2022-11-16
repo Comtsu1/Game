@@ -1,16 +1,16 @@
 #include "Leg.h"
 
 Leg::Leg()
-    :BodyPart() {}
+    :BodyPart(65) {}
 
 Leg::Leg(int hp)
     :BodyPart(hp) {}
 
 std::string Leg::status()
 {
-    int hp = this->getHealth();
-    return hp > 7 ? "Good" :
-        (hp >= 5 ? "Hurt" :
-         (hp >= 3 ? "Badly Hurt" : "Very Hurt" ));
+    double ratio = (double(this->getHealth()) / 65.0) * 100;
+    return ratio > 70.0 ? "Good" :
+        (ratio >= 50.0 ? "Hurt" :
+         (ratio >= 30.0 ? "Badly Hurt" : "Very Hurt" ));
     // TODO "very hurt"
 }
