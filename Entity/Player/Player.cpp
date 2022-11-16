@@ -2,6 +2,7 @@
 #include "Player.hpp"
 
 #include "../../Adventure.h"
+#include <iostream>
 #include <string>
 
 Player::Player(double h, int wl, int fl)
@@ -96,6 +97,8 @@ void Player::damagePart(BodyPart *part, int amount)
 bool Player::isDead()
 {
     // TODO implement body Parts
+    
+    if(this->getHealth() <= 0) handleDeath();
     return this->getHealth() <= 0;
 }
 
@@ -107,4 +110,9 @@ int Player::getFood() const
 int Player::getWater() const
 {
     return m_waterlevel;
+}
+
+void Player::handleDeath()
+{
+    std::cout << "You died, very sad thing...";
 }

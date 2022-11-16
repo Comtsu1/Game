@@ -49,6 +49,8 @@ class Player : public Entity
         int getFood() const;
         int getWater() const;
 
+        void handleDeath();
+
         Invetory& getInvetory();
 };
 

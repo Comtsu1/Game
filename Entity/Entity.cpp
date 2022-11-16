@@ -20,33 +20,32 @@ void Entity::heal(double amount)
     m_health += amount;
 }
 
+void Entity::attack(Entity *entity, std::unique_ptr<Item> item)
+{
+    entity->damage(item->getDamage());
+}
+
+void Entity::attack(Entity *entity, Item* item)
+{
+    entity->damage(item->getDamage());
+}
+
+/*
 ArmorSet Entity::getArmor() const
 {
     return m_armorset;
 }
 
-
 void Entity::setArmor(ArmorSet set)
 {
     m_armorset = set;
 }
-
-void Entity::attack(Entity *entity, std::unique_ptr<Item> item)
-{
-    entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
-}
-
-
-void Entity::attack(Entity *entity, Item* item)
-{
-    entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
-}
-
+*/
 std::string Entity::getVisualAttributes() const
 {
-    return m_armorset.getString();
+    return "Yet to be added";
+    //return m_armorset.getString();
 }
-
 double Entity::getHealth() const
 {
     return m_health;

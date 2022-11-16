@@ -36,20 +36,15 @@ void Goblin::update()
 
 }
 
-std::string Goblin::status()
+std::string Goblin::status() // TODO show status in an intuitive way
 {
-    double amount = getChest()->getHealth() > getHead()->getHealth() ? 
-                        (double(getHead()->getHealth()) / getHead()->getInitHealth() * 100)
-                            :
-                        (double(getChest()->getHealth()) / getChest()->getInitHealth() * 100);
-       // ( 3 * (double(getChest()->getHealth()) / getChest()->getInitHealth())
-       // + (double(getHead()->getHealth()) / getHead()->getInitHealth()) ) * 25.0;
+    double head_damage_perc = (double(getHead()->getHealth()) / getHead()->getInitHealth() * 100);
 
-    std::cout<<amount;
+    std::cout<<head_damage_perc;
 
-    return amount > 70.0 ? "Good" :
-        (amount >= 50.0 ? "Hurt" :
-         (amount >= 30.0 ? "Beaten" : "Badly Beaten" ) );
+    return head_damage_perc > 70.0 ? "Good" :
+          (head_damage_perc >= 50.0 ? "Hurt" :
+          (head_damage_perc >= 30.0 ? "Beaten" : "Badly Beaten" ) );
 }
 
 Head* Goblin::getHead()
@@ -63,10 +58,7 @@ Chest* Goblin::getChest()
 }
 
 Arm* Goblin::getArm(Parts which)
-{ // if number is 1 returns left arm
-  // if number is greater than 1 return right arm
-  // else return nullptr
-  // default 1
+{ 
     if(which == Parts::left) return m_leftArm.get();
     else if(which == Parts::right) return m_rigthArm.get();
 
@@ -74,10 +66,7 @@ Arm* Goblin::getArm(Parts which)
 }
 
 Leg* Goblin::getLeg(Parts which)
-{ // if number is 1 returns left leg
-  // if number is greater than 1 return right leg
-  // else return nullptr
-  // default 1
+{ 
     if(which == Parts::left) return m_leftLeg.get();
     else if(which == Parts::right) return m_rigthLeg.get();
 
@@ -101,9 +90,7 @@ void Goblin::damagePart(BodyPart *part, int amount)
 
 bool Goblin::isDead()
 {
-    return this->getHead()->getHealth() < 0 ? true :
-        (this->getChest()->getHealth() < 0 ? true :
-         false);
+    return this->getHead()->getHealth() < 0;
 }
 
 void Goblin::selectBodyPart(Item* item)
@@ -114,7 +101,7 @@ void Goblin::selectBodyPart(Item* item)
             <<"\n\t2.Chest"
             <<"\n\t3.Left Arm"
             <<"\n\t4.Right Arm"
-            <<"\n\t5.Left Leg"
+            <<"\n\t5.Left eg"
             <<"\n\t6.Right Leg"
             <<"\n> ";
     
@@ -139,15 +126,13 @@ void Goblin::selectBodyPart(Item* item)
             this->getArm(Parts::right)->damage(amount);
             break;
         case '5':
-            this->getLeg(Parts::left)->damage(1);
+            this->getLeg(Parts::left)->damage(amount);
             break;
         case '6':
-            this->getLeg(Parts::right)->damage(1);
+            this->getLeg(Parts::right)->damage(amount);
             break;
         default:
-            std::cout<<"shit mate!";
+            std::cout<<"\n\tWhat you have choosen is not betweem 1 and 6!\n\n";
             break;
     }
 }
-
-

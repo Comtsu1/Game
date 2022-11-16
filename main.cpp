@@ -16,6 +16,8 @@
 #include "Battle.h"
 #include "Stats.h"
 
+// TODO need to implement armor
+
 void clearScreen(); // from getch.cpp
 int getchr(); // from getch.cpp
 

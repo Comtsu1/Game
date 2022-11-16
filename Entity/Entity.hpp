@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <memory>
 #include <string>
+#include <optional>
 
 #include "../Item/Item.h"
 #include "../Item/Armor/ArmorSet/ArmorSet.hpp"
@@ -15,7 +16,6 @@ class Entity
         // TODO improve m_health 
         double m_health;
 
-        ArmorSet m_armorset;
     public:
         Entity();
         Entity(int h);
@@ -31,16 +31,14 @@ class Entity
         virtual void damage(double amount);
         virtual void heal(double amount);
 
-        virtual ArmorSet getArmor() const;
-        virtual void setArmor(ArmorSet set);
+        //virtual ArmorSet getArmor() const;
+        //virtual void setArmor(ArmorSet set);
 
         virtual void attack(Entity *entity, std::unique_ptr<Item> item);
         virtual void attack(Entity *entity, Item* item);
     
-        // TODO ghosts can't have armor, can they?!
+        // TODO
         virtual std::string getVisualAttributes() const;
 
         double virtual getHealth() const;
-
-
 };

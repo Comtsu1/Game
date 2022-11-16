@@ -38,6 +38,6 @@ class Goblin : public Entity
 
         void selectBodyPart(Item* item);
 
-        void virtual damagePart(BodyPart* part, int amount);
+        void damagePart(BodyPart* part, int amount);
 };
 
