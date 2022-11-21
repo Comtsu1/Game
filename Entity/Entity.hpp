@@ -38,7 +38,7 @@ class Entity
         virtual void attack(Entity *entity, Item* item);
     
         // TODO
-        virtual std::string getVisualAttributes() const;
+        virtual std::string getVisualAttributes() const = 0;
 
         double virtual getHealth() const;
 };

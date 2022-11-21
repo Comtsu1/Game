@@ -67,24 +67,24 @@ Chest* Player::getChest()
     return m_chest.get();
 }
 
-Arm* Player::getArm(Parts which)
+Arm* Player::getArm(Type which)
 { // if number is 1 returns left arm
   // if number is greater than 1 return right arm
   // else return nullptr
   // default 1
-    if(which == Parts::left) return m_leftArm.get();
-    else if(which == Parts::right) return m_rigthArm.get();
+    if(which == Type::left) return m_leftArm.get();
+    else if(which == Type::right) return m_rigthArm.get();
 
     return nullptr;
 }
 
-Leg* Player::getLeg(Parts which)
+Leg* Player::getLeg(Type which)
 { // if number is 1 returns left leg
   // if number is greater than 1 return right leg
   // else return nullptr
   // default 1
-    if(which == Parts::left) return m_leftLeg.get();
-    else if(which == Parts::right) return m_rigthLeg.get();
+    if(which == Type::left) return m_leftLeg.get();
+    else if(which == Type::right) return m_rigthLeg.get();
 
     return nullptr;
 }
@@ -115,4 +115,9 @@ int Player::getWater() const
 void Player::handleDeath()
 {
     std::cout << "You died, very sad thing...";
+}
+
+std::string Player::getVisualAttributes() const
+{
+    return "not yet";
 }

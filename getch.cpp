@@ -1,6 +1,8 @@
+#include <bits/types/struct_timeval.h>
 #include <cstdio>
 #include <cstdlib>
 
+#include <sys/select.h>
 #include <unistd.h> // for STDIN_FILENO
 
 #include "defines.h"
@@ -18,6 +20,24 @@ int getchr()
     return a;
 }
 #else
+
+int _kbhit()
+{
+    termios term;
+    tcgetattr(0, &term);
+
+    termios term2 = term;
+    term2.c_lflag &= ~ICANON;
+    tcsetattr(0, TCSANOW, &term2);
+
+    int byteswaiting;
+    ioctl(0, FIONREAD, &byteswaiting);
+
+    tcsetattr(0, TCSANOW, &term);
+
+    return byteswaiting > 0;
+}
+
 
 void clearScreen()
 {

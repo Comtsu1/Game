@@ -19,6 +19,9 @@ class Goblin : public Entity
     std::unique_ptr<Leg>   m_leftLeg, m_rigthLeg;
 
     Slot m_slot;
+
+    ArmorSet m_armorSet;
+
     public:
         Goblin();
         Goblin(Slot slot);
@@ -29,15 +32,17 @@ class Goblin : public Entity
 
         void update();
 
-        Head* getHead();
-        Chest* getChest();
-        Arm* getArm(Parts which);
-        Leg* getLeg(Parts which);
+        ArmorSet getArmor() const;
+        void setArmor(ArmorSet set);
+
+        BodyPart* getPart(Parts which, Type type = Type::NONE);
 
         void showBodyStatus();
 
         void selectBodyPart(Item* item);
 
         void damagePart(BodyPart* part, int amount);
+
+        std::string getVisualAttributes() const;
 };
 

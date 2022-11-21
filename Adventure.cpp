@@ -17,6 +17,10 @@ void Adventure::generageAdventure(Player *player)
 
 void Adventure::Goblin_Attack(Player *player)
 {
+
+    std::cout << "You encountered a goblin, he looks quite angry..."
+            << "\n\n";
+
     std::unique_ptr<Goblin> goblin = std::make_unique<Goblin>();
 
     Battle battle(player, goblin.get());

@@ -1,10 +1,21 @@
 #pragma once
 
 #include <string>
+
+enum class Type
+{
+    NONE,
+    left,
+    right
+};
+
+
 enum class Parts
 {
-    left,
-    right,
+    Head,
+    Chest,
+    Arm,
+    Leg,
 };
 
 class BodyPart

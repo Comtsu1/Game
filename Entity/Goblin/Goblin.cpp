@@ -1,4 +1,6 @@
+#include <iostream>
 #include <memory>
+#include <tuple>
 
 #include "Goblin.hpp"
 #include "../../ItemList.h"
@@ -36,9 +38,19 @@ void Goblin::update()
 
 }
 
+ArmorSet Goblin::getArmor() const
+{
+    return m_armorSet;
+}
+
+void Goblin::setArmor(ArmorSet set)
+{
+    m_armorSet = set;
+}
+
 std::string Goblin::status() // TODO show status in an intuitive way
 {
-    double head_damage_perc = (double(getHead()->getHealth()) / getHead()->getInitHealth() * 100);
+    double head_damage_perc = (double(getPart(Parts::Head)->getHealth()) / getPart(Parts::Head)->getInitHealth() * 100);
 
     std::cout<<head_damage_perc;
 
@@ -47,30 +59,26 @@ std::string Goblin::status() // TODO show status in an intuitive way
           (head_damage_perc >= 30.0 ? "Beaten" : "Badly Beaten" ) );
 }
 
-Head* Goblin::getHead()
+BodyPart* Goblin::getPart(Parts which, Type type)
 {
-    return m_head.get();
-}
-
-Chest* Goblin::getChest()
-{
-    return m_chest.get();
-}
-
-Arm* Goblin::getArm(Parts which)
-{ 
-    if(which == Parts::left) return m_leftArm.get();
-    else if(which == Parts::right) return m_rigthArm.get();
-
-    return nullptr;
-}
-
-Leg* Goblin::getLeg(Parts which)
-{ 
-    if(which == Parts::left) return m_leftLeg.get();
-    else if(which == Parts::right) return m_rigthLeg.get();
-
-    return nullptr;
+    switch (which) {
+        case Parts::Head:
+            return m_head.get();
+            break;
+        case Parts::Chest:
+            return m_chest.get();
+            break;
+        case Parts::Arm:
+            if(type == Type::NONE) return m_leftArm.get();
+            return type == Type::left ? m_leftArm.get() : m_rigthArm.get();
+            break;
+        case Parts::Leg:
+            if(type == Type::NONE) return m_leftLeg.get();
+            return type == Type::left ? m_leftLeg.get() : m_rigthLeg.get();
+            break;
+        default:
+            return nullptr;
+    }
 }
 
 void Goblin::showBodyStatus()
@@ -83,14 +91,14 @@ void Goblin::showBodyStatus()
                 << m_leftLeg->status() << " and " << m_rigthLeg->status();
 }
 
-void Goblin::damagePart(BodyPart *part, int amount)
+void Goblin::damagePart(BodyPart *part, int amount) // TODO goblin cant parry shit
 {
     part->damage(amount);
 }
 
 bool Goblin::isDead()
 {
-    return this->getHead()->getHealth() < 0;
+    return this->getPart(Parts::Head)->getHealth() < 0;
 }
 
 void Goblin::selectBodyPart(Item* item)
@@ -108,31 +116,27 @@ void Goblin::selectBodyPart(Item* item)
     int option = getchr();
 
     // TODO add weapon support
-    // TODO implement enum for easier recognition
     
-    int amount = item->getDamage();
+    BodyPart* selected;
 
-    switch (option) {
-        case '1':
-            this->getHead()->damage(amount);
-            break;
-        case '2':
-            this->getChest()->damage(amount);
-            break;
-        case '3':
-            this->getArm(Parts::left)->damage(amount);
-            break;
-        case '4':
-            this->getArm(Parts::right)->damage(amount);
-            break;
-        case '5':
-            this->getLeg(Parts::left)->damage(amount);
-            break;
-        case '6':
-            this->getLeg(Parts::right)->damage(amount);
-            break;
-        default:
-            std::cout<<"\n\tWhat you have choosen is not betweem 1 and 6!\n\n";
-            break;
+    selected =
+        option == '1' ? getPart(Parts::Head) :
+            option == '2' ? getPart(Parts::Chest) :
+                option == '3' ? getPart(Parts::Arm, Type::left) :
+                    option == '4' ? getPart(Parts::Arm, Type::right) :
+                        option == '5' ? getPart(Parts::Leg, Type::left) :
+                            option == '6' ? getPart(Parts::Leg, Type::right) :
+                                nullptr;
+    if(selected == nullptr)
+    { // if no part of the body was choosen
+        std::cout << "No good, the number is not correct! ";
+        return;
     }
+
+    damagePart(selected, item->getDamage());
+}
+
+std::string Goblin::getVisualAttributes() const
+{
+    return "not yet";
 }

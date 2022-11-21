@@ -41,8 +41,8 @@ class Player : public Entity
 
         Head* getHead();
         Chest* getChest();
-        Arm* getArm(Parts which);
-        Leg* getLeg(Parts which);
+        Arm* getArm(Type which);
+        Leg* getLeg(Type which);
 
         void virtual damagePart(BodyPart* part, int amount);
 
@@ -50,6 +50,8 @@ class Player : public Entity
         int getWater() const;
 
         void handleDeath();
+
+        std::string getVisualAttributes() const;
 
         Invetory& getInvetory();
 };

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <memory>
 
 #include "Entity/Entity.hpp"
@@ -9,6 +10,7 @@
 class Battle
 {
     bool finish = 0;
+    bool pause = 0;
 
     Player* __Attacker;
 // TODO change to entity
@@ -23,6 +25,8 @@ class Battle
         void checkFinish();
 
         void reactBattle(int option); // TODO choose better name
+
+        void pauseBattle(std::chrono::milliseconds milliseconds);
 
         // static void newBattle(const Entity& player, const Group& group);
         // for when the player is having a battle with multiple enemies
