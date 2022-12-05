@@ -13,7 +13,13 @@
 #include "Entity/Player/Player.hpp"
 #include "Slot.hpp"
 
-int getch();
+#include "Battle.h"
+#include "Stats.h"
+
+// TODO need to implement armor
+
+void clearScreen(); // from getch.cpp
+int getchr(); // from getch.cpp
 
 int main()
 {
@@ -22,13 +28,12 @@ int main()
 
     std::unique_ptr<Player> p = std::make_unique<Player>();
 
-
     p->getInvetory().add(std::move(WOODEN_SWORD), 1);
     // p->setArmor(LEATHER_ARMOR_FULL_SET);
 
     bool gamerunning = 1;
 
-    std::system("clear"); // clears the screen for the start of the game
+    clearScreen(); // clears the screen for the start of the game
 
     while(gamerunning)
     {
@@ -38,11 +43,12 @@ int main()
                 <<"\t2. View Inventory\n"
                 <<"\t3. Exit\n";
 
-        int option; option = getch();
+        int option; option = getchr();
         switch (option)
         {
             case (int)('1'):
             case (int)('q'):
+                clearScreen();
                 p->adventure();
                 break;
             case (int)('2'):
@@ -51,9 +57,9 @@ int main()
                 p->getInvetory().show();
 
                 std::cout<<CONTINUE_MESSAGE;
-                getch();
+                getchr();
 
-                std::system("clear");
+                clearScreen();
                 break;
             case (int)('3'):
             case (int)('e'):
@@ -61,9 +67,11 @@ int main()
                 break;
         }
 
-        if(p->getHealth() <= 0)
+        if(p->isDead())
         {
             return 0; // player died
         }
+
+        clearScreen();
     }
 }

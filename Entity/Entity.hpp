@@ -2,40 +2,47 @@
 
 #include <cstdlib>
 #include <memory>
+#include <string>
+#include <optional>
 
 #include "../Item/Item.h"
 #include "../Item/Armor/ArmorSet/ArmorSet.hpp"
 
+#include "BodyParts/BodyPart.h"
+
 class Entity
 {
     private:
+        // TODO improve m_health 
         double m_health;
-        ArmorSet m_armorset;
+
     public:
-        Entity(int h): m_health(h) {};
+        Entity();
+        Entity(int h);
 
-        inline virtual void damage(double amount) {m_health-=amount;}
-        inline virtual void heal(double amount) { m_health+=amount;}
+        virtual bool isDead() = 0;
 
-        inline virtual ArmorSet getArmor() const {return m_armorset;}
-        inline virtual void setArmor(ArmorSet set) {m_armorset = set;}
+        std::string virtual status() = 0;
 
-        virtual void attack(Entity *entity, std::unique_ptr<Item> item)
-        {
-            entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
-        }
+        void virtual update() = 0;
+
+        void virtual damagePart(BodyPart* part, int amount) = 0;
+
+        virtual void damage(double amount);
+        virtual void heal(double amount);
+
+        //virtual ArmorSet getArmor() const;
+        //virtual void setArmor(ArmorSet set);
+        // virtual void attack(Entity *entity, std::unique_ptr<Item> item) = 0;
+
         
-        virtual void attack(Entity *entity, Item* item)
-        {
-            entity->damage(item->getDamage() - entity->getArmor().calculateProtection());
-        }
+        virtual BodyPart* getPart(Parts which,
+                                    Type type = Type::NONE) = 0;
 
-        inline virtual std::string getVisualAttributes() const
-        {
-            return m_armorset.getString();
-        }
+        virtual void attack(Entity *entity, Item* item) = 0;
+    
+        // TODO
+        virtual std::string getVisualAttributes() const = 0;
 
-        double virtual getHealth() const {return m_health;}
-
-
+        double virtual getHealth() const;
 };
