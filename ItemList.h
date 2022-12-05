@@ -10,6 +10,7 @@
 
 
 #define APPLE std::make_unique<Item>("Apple", 1001, 1)
+#define HERB std::make_unique<Item>("Herb", 2001, 0)
 
 #define WOODEN_SWORD std::make_unique<Tool>(std::make_unique<Item>(Item("Wooden Sword", 910, 3)), 30)
 #define STONE_SWORD std::make_unique<Tool>(std::make_unique<Item>("Stone Sword", 911, 6), 60)
