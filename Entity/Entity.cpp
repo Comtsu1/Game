@@ -20,16 +20,6 @@ void Entity::heal(double amount)
     m_health += amount;
 }
 
-void Entity::attack(Entity *entity, std::unique_ptr<Item> item)
-{
-    entity->damage(item->getDamage());
-}
-
-void Entity::attack(Entity *entity, Item* item)
-{
-    entity->damage(item->getDamage());
-}
-
 double Entity::getHealth() const
 {
     return m_health;

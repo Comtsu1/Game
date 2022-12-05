@@ -33,9 +33,13 @@ class Entity
 
         //virtual ArmorSet getArmor() const;
         //virtual void setArmor(ArmorSet set);
+        // virtual void attack(Entity *entity, std::unique_ptr<Item> item) = 0;
 
-        virtual void attack(Entity *entity, std::unique_ptr<Item> item);
-        virtual void attack(Entity *entity, Item* item);
+        
+        virtual BodyPart* getPart(Parts which,
+                                    Type type = Type::NONE) = 0;
+
+        virtual void attack(Entity *entity, Item* item) = 0;
     
         // TODO
         virtual std::string getVisualAttributes() const = 0;

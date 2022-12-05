@@ -20,8 +20,9 @@ enum class Parts
 
 class BodyPart
 {
-    int m_inithealth;
-    int m_health;
+    protected:
+        int m_inithealth;
+        int m_health;
 
     public:
         BodyPart();
@@ -36,4 +37,6 @@ class BodyPart
 
         void damage(int amount);
         void heal(int amount);
+
+        double getPercentage();
 };

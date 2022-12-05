@@ -24,7 +24,6 @@ class Goblin : public Entity
 
     public:
         Goblin();
-        Goblin(Slot slot);
 
         bool isDead();
 
@@ -34,6 +33,8 @@ class Goblin : public Entity
 
         ArmorSet getArmor() const;
         void setArmor(ArmorSet set);
+
+        void attack(Entity* entity, Item* item);
 
         BodyPart* getPart(Parts which, Type type = Type::NONE);
 

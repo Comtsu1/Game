@@ -67,7 +67,7 @@ int main()
                 break;
         }
 
-        if(p->getHealth() <= 0)
+        if(p->isDead())
         {
             return 0; // player died
         }

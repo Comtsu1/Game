@@ -9,6 +9,7 @@
 #include "Entity/Goblin/Goblin.hpp"
 #include "Entity/Player/Player.hpp"
 
+#include "ItemList.h"
 #include "Stats.h"
 #include "defines.h"
 
@@ -23,7 +24,7 @@ Battle::Battle(Player* attacker, Goblin* attacked)
 void Battle::pauseBattle(std::chrono::milliseconds milliseconds)
 {
     pause = 1;
-    auto sleep_function = [=](){
+    auto sleep_function = [&](){
         while (pause) {
             if(_kbhit()) { getchr(); clearScreen(); }
         }
@@ -52,7 +53,7 @@ void Battle::startBattle()
         std::cout<<"You and the goblin are ready to exchange blows. "
             << " What will you do?"
             <<"\n\tGolbin's status: " << __Attacked->status()
-            <<"\n\tYou(hp): " << __Attacker->getHealth()
+            <<"\n\tYou: " << __Attacker->status()
             <<"\nWhat would you like to do?\n"
             <<"\tAttack(a/A)\n"
             <<"\tInspect visually(i/I)\n"
@@ -79,30 +80,35 @@ void Battle::startBattle()
 
 void Battle::reactBattle(int option)
 {
+    auto sword = WOODEN_SWORD;
+
     // clears the screen so the new information can be
     // displayed
     clearScreen();
 
     if(option == 'a' || option == 'A')
     {
-        __Attacked->selectBodyPart(__Attacker->getInvetory()[0].getItem());
-        //__Attacker->attack(__Attacked, __Attacker->getInvetory()[0].getItem());
-        __Attacked->attack(__Attacker, WOODEN_SWORD);
+        __Attacker->attack(__Attacked, __Attacker->getInvetory()[0].getItem());
+        __Attacked->attack(__Attacker, sword.get());
         clearScreen();
     }
     else if(option == 'i' || option == 'I')
     {
         //std::cout<<"\nThe goblin has: "<<__Attacked->getArmor().getString();
 
-        std::cout<<"State of Goblin: "; __Attacked->showBodyStatus();
+        std::cout<<"State of Entity: "; __Attacked->showBodyStatus();
         std::cout<<"\n\n";
+        
+        std::cout<< CONTINUE_MESSAGE;
+        option = getchr();
+        return;
     }
     else if(option == 'r' || option == 'R')
     {
         if(rand() % 10)
         { // gets caught
             std::cout<<"\n\nYou are stupid and the goblin hit you!\n";
-            __Attacked->attack(__Attacker, WOODEN_SWORD);
+            __Attacked->attack(__Attacker, sword.get());
         }
         else
         { // leaves
@@ -115,8 +121,11 @@ void Battle::reactBattle(int option)
     else if(option == 's' || option == 'S')
     {
         Stats::showStats(__Attacker);
+        
+        std::cout<<"Status: ";
+        __Attacker->showBodyStatus();
 
-        std::cout<< "\n"
+        std::cout<< "\n\n"
             << CONTINUE_MESSAGE;
 
         getchr(); // user input
@@ -127,7 +136,7 @@ void Battle::reactBattle(int option)
     {
         std::cout<<"Because you are stupid, and did nothing "
             <<"the goblin hit you with his sword he had.\n";
-        __Attacked->attack(__Attacker, WOODEN_SWORD);
+        __Attacked->attack(__Attacker, sword.get());
     }
 
     pauseBattle(std::chrono::milliseconds(2500));

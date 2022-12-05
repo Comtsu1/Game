@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <memory>
 #include <tuple>
@@ -10,27 +11,14 @@ int getchr(); // getch.cpp
 Goblin::Goblin()
     : Entity(10), m_slot(NULL_ITEM, 0)
 {
-    m_head     = std::make_unique<Head>();
-    m_chest    = std::make_unique<Chest>();
+    m_head     = std::make_unique<Head>(20);
+    m_chest    = std::make_unique<Chest>(75);
     
-    m_leftArm  = std::make_unique<Arm>();
-    m_rigthArm = std::make_unique<Arm>();
+    m_leftArm  = std::make_unique<Arm>(30);
+    m_rigthArm = std::make_unique<Arm>(30);
 
-    m_leftLeg  = std::make_unique<Leg>();
-    m_rigthLeg = std::make_unique<Leg>();
-}
-
-Goblin::Goblin(Slot slot)
-    : Entity(10), m_slot(slot.getItem(), slot.getQty())
-{
-    m_head     = std::make_unique<Head>();
-    m_chest    = std::make_unique<Chest>();
-    
-    m_leftArm  = std::make_unique<Arm>();
-    m_rigthArm = std::make_unique<Arm>();
-
-    m_leftLeg  = std::make_unique<Leg>();
-    m_rigthLeg = std::make_unique<Leg>();
+    m_leftLeg  = std::make_unique<Leg>(35);
+    m_rigthLeg = std::make_unique<Leg>(35);
 }
 
 void Goblin::update()
@@ -52,11 +40,60 @@ std::string Goblin::status() // TODO show status in an intuitive way
 {
     double head_damage_perc = (double(getPart(Parts::Head)->getHealth()) / getPart(Parts::Head)->getInitHealth() * 100);
 
+#define DEBUG
+
+#ifdef DEBUG
     std::cout<<head_damage_perc;
+#endif
 
     return head_damage_perc > 70.0 ? "Good" :
           (head_damage_perc >= 50.0 ? "Hurt" :
           (head_damage_perc >= 30.0 ? "Beaten" : "Badly Beaten" ) );
+}
+
+void Goblin::attack(Entity *entity, Item *item)
+{
+    // goblin randomly attack the player
+    
+    int option = rand() % 6 + 1;
+
+    // give some bias towards the head
+    option = rand() % 10 + 1 >= 4 ? (1) // true 6/10
+                    : (option); // false 4/5
+
+    BodyPart* selectedBodyPart = nullptr;
+
+    switch (option)
+    {
+        case 1:
+            selectedBodyPart = entity->getPart(Parts::Head);
+            break;
+        case 2:
+            selectedBodyPart = entity->getPart(Parts::Chest);
+            break;
+        case 3:
+            selectedBodyPart = entity->getPart(Parts::Arm, Type::left);
+            break;
+        case 4:
+            selectedBodyPart = entity->getPart(Parts::Arm, Type::right);
+            break;
+        case 5:
+            selectedBodyPart = entity->getPart(Parts::Leg, Type::left);
+            break;
+        case 6:
+            selectedBodyPart = entity->getPart(Parts::Leg, Type::right);
+            break;
+    }
+
+    if(selectedBodyPart == nullptr)
+        return; // something went very wrong
+
+    auto sword = WOODEN_SWORD;
+
+    int damage = sword.get()->getDamage();
+
+    entity->damagePart(selectedBodyPart, damage);
+
 }
 
 BodyPart* Goblin::getPart(Parts which, Type type)
@@ -103,37 +140,7 @@ bool Goblin::isDead()
 
 void Goblin::selectBodyPart(Item* item)
 {
-    std::cout<<"\n\nPlease select a "
-            <<"body part you would like to hit:"
-            <<"\n\t1.Head"
-            <<"\n\t2.Chest"
-            <<"\n\t3.Left Arm"
-            <<"\n\t4.Right Arm"
-            <<"\n\t5.Left eg"
-            <<"\n\t6.Right Leg"
-            <<"\n> ";
-    
-    int option = getchr();
 
-    // TODO add weapon support
-    
-    BodyPart* selected;
-
-    selected =
-        option == '1' ? getPart(Parts::Head) :
-            option == '2' ? getPart(Parts::Chest) :
-                option == '3' ? getPart(Parts::Arm, Type::left) :
-                    option == '4' ? getPart(Parts::Arm, Type::right) :
-                        option == '5' ? getPart(Parts::Leg, Type::left) :
-                            option == '6' ? getPart(Parts::Leg, Type::right) :
-                                nullptr;
-    if(selected == nullptr)
-    { // if no part of the body was choosen
-        std::cout << "No good, the number is not correct! ";
-        return;
-    }
-
-    damagePart(selected, item->getDamage());
 }
 
 std::string Goblin::getVisualAttributes() const

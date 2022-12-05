@@ -57,36 +57,78 @@ void Player::adventure()
     Adventure::generageAdventure(this);
 }
 
-Head* Player::getHead()
+void Player::attack(Entity *entity, Item *item)
 {
-    return m_head.get();
+    std::cout<<"Please select a "
+            <<"body part you would like to hit:"
+            <<"\n\t1.Head"
+            <<"\n\t2.Chest"
+            <<"\n\t3.Left Arm"
+            <<"\n\t4.Right Arm"
+            <<"\n\t5.Left eg"
+            <<"\n\t6.Right Leg"
+            <<"\n> ";
+    
+    int option = getchr();
+
+    // TODO add weapon support
+    
+    BodyPart* selected = nullptr;
+
+    switch (option)
+    {
+        case '1':
+            selected = entity->getPart(Parts::Head);
+            break;
+        case '2':
+            selected = entity->getPart(Parts::Chest);
+            break;
+        case '3':
+            selected = entity->getPart(Parts::Arm, Type::left);
+            break;
+        case '4':
+            selected = entity->getPart(Parts::Arm, Type::right);
+            break;
+        case '5':
+            selected = entity->getPart(Parts::Leg, Type::left);
+            break;
+        case '6':
+            selected = entity->getPart(Parts::Leg, Type::right);
+            break;
+    }
+
+    if(selected == nullptr)
+    { // if no part of the body was choosen
+        std::cout << "No good, the number is not correct! ";
+        return;
+    }
+
+
+    // TODO change damage to a more appropriate ecuation
+    int damage = item->getDamage();
+    damagePart(selected, damage);
 }
 
-Chest* Player::getChest()
+BodyPart* Player::getPart(Parts which, Type type)
 {
-    return m_chest.get();
-}
-
-Arm* Player::getArm(Type which)
-{ // if number is 1 returns left arm
-  // if number is greater than 1 return right arm
-  // else return nullptr
-  // default 1
-    if(which == Type::left) return m_leftArm.get();
-    else if(which == Type::right) return m_rigthArm.get();
-
-    return nullptr;
-}
-
-Leg* Player::getLeg(Type which)
-{ // if number is 1 returns left leg
-  // if number is greater than 1 return right leg
-  // else return nullptr
-  // default 1
-    if(which == Type::left) return m_leftLeg.get();
-    else if(which == Type::right) return m_rigthLeg.get();
-
-    return nullptr;
+    switch (which) {
+        case Parts::Head:
+            return m_head.get();
+            break;
+        case Parts::Chest:
+            return m_chest.get();
+            break;
+        case Parts::Arm:
+            if(type == Type::NONE) return m_leftArm.get();
+            return type == Type::left ? m_leftArm.get() : m_rigthArm.get();
+            break;
+        case Parts::Leg:
+            if(type == Type::NONE) return m_leftLeg.get();
+            return type == Type::left ? m_leftLeg.get() : m_rigthLeg.get();
+            break;
+        default:
+            return nullptr;
+    }
 }
 
 void Player::damagePart(BodyPart *part, int amount)
@@ -97,9 +139,10 @@ void Player::damagePart(BodyPart *part, int amount)
 bool Player::isDead()
 {
     // TODO implement body Parts
+    if(this->m_head->getHealth() > 0) return 0;
     
-    if(this->getHealth() <= 0) handleDeath();
-    return this->getHealth() <= 0;
+    handleDeath();
+    return 1;
 }
 
 int Player::getFood() const
@@ -120,4 +163,15 @@ void Player::handleDeath()
 std::string Player::getVisualAttributes() const
 {
     return "not yet";
+}
+
+
+void Player::showBodyStatus()
+{
+    std::cout << "\nHead: " << m_head->getPercentage()
+                <<"\nChest: " << m_chest->getPercentage()
+                <<"\nArm (left and right): \n\t"
+                << m_leftArm->getPercentage() << " and " << m_rigthArm->getPercentage()
+                <<"\nLeg (left and right): \n\t"
+                << m_leftLeg->getPercentage() << " and " << m_rigthLeg->getPercentage();
 }

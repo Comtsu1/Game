@@ -30,3 +30,8 @@ void BodyPart::heal(int amount)
 {
     m_health += amount;
 }
+
+double BodyPart::getPercentage()
+{
+    return ((double)m_health / m_inithealth) * 100.0f;
+}

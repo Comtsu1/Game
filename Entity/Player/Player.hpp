@@ -38,11 +38,10 @@ class Player : public Entity
         std::string status();
 
         void adventure();
+        void attack(Entity* entity, Item* item);
 
-        Head* getHead();
-        Chest* getChest();
-        Arm* getArm(Type which);
-        Leg* getLeg(Type which);
+
+        BodyPart* getPart(Parts which, Type type);
 
         void virtual damagePart(BodyPart* part, int amount);
 
@@ -54,5 +53,7 @@ class Player : public Entity
         std::string getVisualAttributes() const;
 
         Invetory& getInvetory();
+
+        void showBodyStatus();
 };
 
