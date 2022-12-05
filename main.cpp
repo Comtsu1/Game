@@ -41,7 +41,8 @@ int main()
                 <<"You shall choose only one:\n"
                 <<"\t1. Adventure\n"
                 <<"\t2. View Inventory\n"
-                <<"\t3. Exit\n";
+                <<"\t3. Show Stats\n"
+                <<"\n\t0. Exit\n";
 
         int option; option = getchr();
         switch (option)
@@ -63,6 +64,14 @@ int main()
                 break;
             case (int)('3'):
             case (int)('e'):
+                clearScreen();
+                Stats::showStats(p.get());
+                p->showBodyStatus();
+
+                std::cout<< "\n\n" << CONTINUE_MESSAGE; option = getchr();
+                break;
+            case (int)('0'):
+            case (int)('p'):
                 gamerunning = 0;
                 break;
         }
